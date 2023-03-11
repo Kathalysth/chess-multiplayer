@@ -1,9 +1,13 @@
+import ChessBoard from "./components/chessboard";
+import ChessMenu from "./components/menu";
+
 function App() {
   return (
-    <div className="App">
-      Chess
+    <div className="max-w-7xl h-screen mx-auto p-8 overflow-hidden flex flex-wrap">
+      <ChessBoard />
+      <ChessMenu />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
