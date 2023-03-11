@@ -1,6 +1,6 @@
 function ChessMenu() {
   return (
-    <div className="w-4/12 h-full p-4">
+    <div className="order-0 md:order-1 w-full md:w-4/12 md:h-full p-4">
       <h3 className="text-3xl">Chess Mate</h3>
       <button className="mt-4 p-4 bg-white text-gray-900 rounded-lg">
         Start New Game

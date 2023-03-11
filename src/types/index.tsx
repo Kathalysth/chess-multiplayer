@@ -1,13 +1,10 @@
 export type ChessPiece = {
-    piece: string,
-    moves: Array<Move>
-    exceptions:string
-}
-
-export type Move = Array<number>
+  piece: { name: string; color: string; direction: string };
+  moves: number[][];
+  exceptions?: string;
+};
 
 export type ChessSquare = {
-    coordinates: Array<number>,
-    chessPiece?:ChessPiece
-    
-}
+  coordinates: Array<number>;
+  chessPiece?: ChessPiece;
+};

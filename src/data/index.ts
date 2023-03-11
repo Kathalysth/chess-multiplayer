@@ -1,24 +1,184 @@
 import { ChessSquare } from "../types";
 export const squareInitialData: ChessSquare[][] = [
   [
-    { coordinates: [0, 0] },
-    { coordinates: [0, 1] },
-    { coordinates: [0, 2] },
-    { coordinates: [0, 3] },
-    { coordinates: [0, 4] },
-    { coordinates: [0, 5] },
-    { coordinates: [0, 6] },
-    { coordinates: [0, 7] },
+    {
+      coordinates: [0, 0],
+      chessPiece: {
+        piece: {
+          name: "rook",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [0, 1],
+      chessPiece: {
+        piece: {
+          name: "knight",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [0, 2],
+      chessPiece: {
+        piece: {
+          name: "bishop",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [0, 3],
+      chessPiece: {
+        piece: {
+          name: "queen",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [0, 4],
+      chessPiece: {
+        piece: {
+          name: "king",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [0, 5],
+      chessPiece: {
+        piece: {
+          name: "bishop",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [0, 6],
+      chessPiece: {
+        piece: {
+          name: "knight",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [0, 7],
+      chessPiece: {
+        piece: {
+          name: "rook",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
   ],
   [
-    { coordinates: [1, 0] },
-    { coordinates: [1, 1] },
-    { coordinates: [1, 2] },
-    { coordinates: [1, 3] },
-    { coordinates: [1, 4] },
-    { coordinates: [1, 5] },
-    { coordinates: [1, 6] },
-    { coordinates: [1, 7] },
+    {
+      coordinates: [1, 0],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [1, 1],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [1, 2],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [1, 3],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [1, 4],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [1, 5],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [1, 6],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [1, 7],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "black",
+          direction: "down",
+        },
+        moves: [[0, 1]],
+      },
+    },
   ],
   [
     { coordinates: [2, 0] },
@@ -61,23 +221,183 @@ export const squareInitialData: ChessSquare[][] = [
     { coordinates: [5, 7] },
   ],
   [
-    { coordinates: [6, 0] },
-    { coordinates: [6, 1] },
-    { coordinates: [6, 2] },
-    { coordinates: [6, 3] },
-    { coordinates: [6, 4] },
-    { coordinates: [6, 5] },
-    { coordinates: [6, 6] },
-    { coordinates: [6, 7] },
+    {
+      coordinates: [6, 0],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [6, 1],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [6, 2],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [6, 3],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [6, 4],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [6, 5],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [6, 6],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [6, 7],
+      chessPiece: {
+        piece: {
+          name: "pawn",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
   ],
   [
-    { coordinates: [7, 0] },
-    { coordinates: [7, 1] },
-    { coordinates: [7, 2] },
-    { coordinates: [7, 3] },
-    { coordinates: [7, 4] },
-    { coordinates: [7, 5] },
-    { coordinates: [7, 6] },
-    { coordinates: [7, 7] },
+    {
+      coordinates: [7, 0],
+      chessPiece: {
+        piece: {
+          name: "rook",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [7, 1],
+      chessPiece: {
+        piece: {
+          name: "knight",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [7, 2],
+      chessPiece: {
+        piece: {
+          name: "bishop",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [7, 3],
+      chessPiece: {
+        piece: {
+          name: "queen",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [7, 4],
+      chessPiece: {
+        piece: {
+          name: "king",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [7, 5],
+      chessPiece: {
+        piece: {
+          name: "bishop",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [7, 6],
+      chessPiece: {
+        piece: {
+          name: "knight",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
+    {
+      coordinates: [7, 7],
+      chessPiece: {
+        piece: {
+          name: "rook",
+          color: "white",
+          direction: "up",
+        },
+        moves: [[0, 1]],
+      },
+    },
   ],
 ];
