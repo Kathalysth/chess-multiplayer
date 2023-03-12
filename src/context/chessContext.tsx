@@ -11,8 +11,18 @@ interface Props {
 
 const ChessProvider: React.FC<Props> = ({ children }) => {
   const [data, setData] = React.useState<ChessSquare[][]>(squareInitialData);
+  const [selectedSquare, setSelectedSquare] =
+    React.useState<ChessSquare | null>(null);
+
+  const selectSquare = (square: ChessSquare) => {
+    setSelectedSquare(square);
+  };
   return (
-    <ChessContext.Provider value={{ data }}>{children}</ChessContext.Provider>
+    <ChessContext.Provider value={{ data, selectedSquare, selectSquare }}>
+      {children}
+    </ChessContext.Provider>
   );
 };
 export default ChessProvider;
+
+const movePiece = (square: ChessSquare) => {};

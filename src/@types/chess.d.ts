@@ -14,7 +14,8 @@ export type ChessSquare = {
 
 export type ChessContextType = {
   data: ChessSquare[][];
-  selectedSquare?: ChessSquare;
+  selectedSquare?: ChessSquare | null;
+  selectSquare: (square: ChessSquare) => void;
   saveTodo?: (todo: ITodo) => void;
   updateTodo?: (id: number) => void;
 };
