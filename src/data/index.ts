@@ -1,4 +1,4 @@
-import { ChessSquare } from "../types";
+import { ChessSquare } from "../@types/chess";
 export const squareInitialData: ChessSquare[][] = [
   [
     {

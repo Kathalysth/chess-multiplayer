@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Square from "../Square";
-import { squareInitialData } from "../../data";
-import { ChessSquare } from "../../types";
+import { ChessContext } from "../../context/chessContext";
+import { ChessSquare, ChessContextType } from "../../@types/chess";
 
 function ChessBoard() {
-  const [squareData, setSquareData] = useState(squareInitialData);
+  const { data } = useContext(ChessContext) as ChessContextType;
 
   return (
     <div className="order-1 w-full md:w-[33rem] md:h-[33rem] h-[60vh] lg:w-[40rem] lg:w-[40rem] bg-white">
       <div className="w-full h-full grid grid-cols-8 grid-rows-{8}">
-        {squareData.map((squareRow: Array<ChessSquare>) => {
+        {data.map((squareRow: Array<ChessSquare>) => {
           return squareRow.map((chessSquare: ChessSquare) => (
             <Square
               square={chessSquare}
