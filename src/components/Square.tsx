@@ -14,7 +14,7 @@ function Square({ square }: { square: ChessSquare }) {
   console.log(square.coordinates, "actual Square");
   return (
     <div
-      className={`${
+      className={`aspect-square ${
         offset % 2 === 0 ? "bg-stone-600/[0.8]" : "bg-slate-300/[0.8]"
       } flex justify-center items-center relative ${
         square?.chessPiece?.piece?.direction === "down" ? "rotate-180" : ""

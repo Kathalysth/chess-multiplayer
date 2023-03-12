@@ -24,9 +24,11 @@
   animation-timing-function: ease-in-out;
 }
 .rotate_black {
+  transform: rotate(180deg);
   animation: rotationBlack 1.5s ease-in;
 }
 .rotate_white {
+  transform: rotate(0deg);
   animation: rotationWhite 1.5s ease-in;
 }
 

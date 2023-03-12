@@ -1,27 +1,27 @@
 // @ts-ignore
-import { ReactComponent as WKing } from "../assets/svg/w_king_svg_NoShadow.svg";
+import { ReactComponent as WKing } from "../assets/svg/white-king.svg";
 // @ts-ignore
-import { ReactComponent as BKing } from "../assets/svg/b_king_svg_NoShadow.svg";
+import { ReactComponent as BKing } from "../assets/svg/black-king.svg";
 // @ts-ignore
-import { ReactComponent as WQueen } from "../assets/svg/w_queen_svg_NoShadow.svg";
+import { ReactComponent as WQueen } from "../assets/svg/white-queen.svg";
 // @ts-ignore
-import { ReactComponent as BQueen } from "../assets/svg/b_queen_svg_NoShadow.svg";
+import { ReactComponent as BQueen } from "../assets/svg/black-queen.svg";
 // @ts-ignore
-import { ReactComponent as WKnight } from "../assets/svg/w_knight_svg_NoShadow.svg";
+import { ReactComponent as WKnight } from "../assets/svg/white-knight.svg";
 // @ts-ignore
-import { ReactComponent as BKnight } from "../assets/svg/b_knight_svg_NoShadow.svg";
+import { ReactComponent as BKnight } from "../assets/svg/black-knight.svg";
 // @ts-ignore
-import { ReactComponent as WPawn } from "../assets/svg/w_pawn_svg_NoShadow.svg";
+import { ReactComponent as WPawn } from "../assets/svg/white-pawn.svg";
 // @ts-ignore
-import { ReactComponent as BPawn } from "../assets/svg/b_pawn_svg_NoShadow.svg";
+import { ReactComponent as BPawn } from "../assets/svg/black-pawn.svg";
 // @ts-ignore
-import { ReactComponent as WRook } from "../assets/svg/w_rook_svg_NoShadow.svg";
+import { ReactComponent as WRook } from "../assets/svg/white-rook.svg";
 // @ts-ignore
-import { ReactComponent as BRook } from "../assets/svg/b_rook_svg_NoShadow.svg";
+import { ReactComponent as BRook } from "../assets/svg/black-rook.svg";
 // @ts-ignore
-import { ReactComponent as WBishop } from "../assets/svg/w_bishop_svg_NoShadow.svg";
+import { ReactComponent as WBishop } from "../assets/svg/white-bishop.svg";
 // @ts-ignore
-import { ReactComponent as BBishop } from "../assets/svg/b_bishop_svg_NoShadow.svg";
+import { ReactComponent as BBishop } from "../assets/svg/black-bishop.svg";
 
 function RenderPiece({
   piece,
@@ -33,88 +33,88 @@ function RenderPiece({
   if (piece.name === "rook" && piece.color === "white") {
     return (
       <button onClick={onClick} role="button" aria-label="white rook">
-        <WRook className="w-8 h-8" />
+        <WRook className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "rook" && piece.color === "black") {
     return (
       <button onClick={onClick} role="button" aria-label="black rook">
-        <BRook className="w-8 h-8" />
+        <BRook className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "king" && piece.color === "white") {
     return (
       <button onClick={onClick} role="button" aria-label="white king">
-        <WKing className="w-8 h-8" />
+        <WKing className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "king" && piece.color === "black") {
     return (
       <button onClick={onClick} role="button" aria-label="black king">
-        <BKing className="w-8 h-8" />
+        <BKing className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "knight" && piece.color === "white") {
     return (
       <button onClick={onClick} role="button" aria-label="white knight">
-        <WKnight className="w-8 h-8" />
+        <WKnight className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "knight" && piece.color === "black") {
     return (
       <button onClick={onClick} role="button" aria-label="black knight">
-        <BKnight className="w-8 h-8" />
+        <BKnight className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "queen" && piece.color === "white") {
     return (
       <button onClick={onClick} role="button" aria-label="white queen">
-        <WQueen className="w-8 h-8" />
+        <WQueen className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "queen" && piece.color === "black") {
     return (
       <button onClick={onClick} role="button" aria-label="black queen">
-        <BQueen className="w-8 h-8" />
+        <BQueen className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "pawn" && piece.color === "white") {
     return (
       <button onClick={onClick} role="button" aria-label="white pawn">
-        <WPawn className="w-8 h-8" />
+        <WPawn className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "pawn" && piece.color === "black") {
     return (
       <button onClick={onClick} role="button" aria-label="black pawn">
-        <BPawn className="w-8 h-8 fill-black" />
+        <BPawn className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "bishop" && piece.color === "white") {
     return (
       <button onClick={onClick} role="button" aria-label="white bishop">
-        <WBishop className="w-8 h-8" />
+        <WBishop className="w-12 h-12" />
       </button>
     );
   }
   if (piece.name === "bishop" && piece.color === "black") {
     return (
       <button onClick={onClick} role="button" aria-label="black bishop">
-        <BBishop className="w-8 h-8 font-sx" />
+        <BBishop className="w-12 h-12" />
       </button>
     );
   }
-  return <div className="w-8 h-8"></div>;
+  return <div className="w-12 h-12"></div>;
 }
 
 export default RenderPiece;
