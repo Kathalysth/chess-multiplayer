@@ -29,9 +29,11 @@ export type ChessContextType = {
   playerMode: PlayerMode;
   turn: PlayerMode;
   selectedSquare?: ChessSquare | null;
+  openMoves: number[][];
+  resetGame: () => void;
   togglePlayerMode: (value: string) => void;
   toggleTurn: () => void;
   selectSquare: (square: ChessSquare) => void;
   findPossiblePieceMove: (selectedSquare: ChessSquare) => void;
-  updateTodo?: (id: number) => void;
+  initiateMoveInto: (selectedSquare: ChessSquare) => void;
 };

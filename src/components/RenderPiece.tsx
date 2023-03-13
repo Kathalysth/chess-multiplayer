@@ -23,95 +23,89 @@ import { ReactComponent as WBishop } from "../assets/svg/white-bishop.svg";
 // @ts-ignore
 import { ReactComponent as BBishop } from "../assets/svg/black-bishop.svg";
 
-function RenderPiece({
-  piece,
-  onClick,
-}: {
-  piece: { name: string; color: string };
-  onClick: () => void;
-}) {
+function RenderPiece({ piece }: { piece: { name: string; color: string } }) {
   if (piece.name === "rook" && piece.color === "white") {
     return (
-      <button onClick={onClick} role="button" aria-label="white rook">
+      <div aria-label="white rook">
         <WRook className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "rook" && piece.color === "black") {
     return (
-      <button onClick={onClick} role="button" aria-label="black rook">
+      <div aria-label="black rook">
         <BRook className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "king" && piece.color === "white") {
     return (
-      <button onClick={onClick} role="button" aria-label="white king">
+      <div aria-label="white king">
         <WKing className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "king" && piece.color === "black") {
     return (
-      <button onClick={onClick} role="button" aria-label="black king">
+      <div aria-label="black king">
         <BKing className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "knight" && piece.color === "white") {
     return (
-      <button onClick={onClick} role="button" aria-label="white knight">
+      <div aria-label="white knight">
         <WKnight className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "knight" && piece.color === "black") {
     return (
-      <button onClick={onClick} role="button" aria-label="black knight">
+      <div aria-label="black knight">
         <BKnight className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "queen" && piece.color === "white") {
     return (
-      <button onClick={onClick} role="button" aria-label="white queen">
+      <div aria-label="white queen">
         <WQueen className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "queen" && piece.color === "black") {
     return (
-      <button onClick={onClick} role="button" aria-label="black queen">
+      <div aria-label="black queen">
         <BQueen className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "pawn" && piece.color === "white") {
     return (
-      <button onClick={onClick} role="button" aria-label="white pawn">
+      <div aria-label="white pawn">
         <WPawn className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "pawn" && piece.color === "black") {
     return (
-      <button onClick={onClick} role="button" aria-label="black pawn">
+      <div aria-label="black pawn">
         <BPawn className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "bishop" && piece.color === "white") {
     return (
-      <button onClick={onClick} role="button" aria-label="white bishop">
+      <div aria-label="white bishop">
         <WBishop className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   if (piece.name === "bishop" && piece.color === "black") {
     return (
-      <button onClick={onClick} role="button" aria-label="black bishop">
+      <div aria-label="black bishop">
         <BBishop className="w-12 h-12" />
-      </button>
+      </div>
     );
   }
   return <div className="w-12 h-12"></div>;

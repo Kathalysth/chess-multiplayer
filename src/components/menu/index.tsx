@@ -8,7 +8,7 @@ import UserDropdown from "../userdropdown";
 const modes: string[] = ["white", "black"];
 
 function ChessMenu() {
-  const { data, playerMode, togglePlayerMode } = useContext(
+  const { togglePlayerMode, resetGame } = useContext(
     ChessContext
   ) as ChessContextType;
   const [selected, setSelected] = useState<string>(modes[0]);
@@ -20,7 +20,12 @@ function ChessMenu() {
       </div>
 
       <div className="mt-4 py-4  gap-4 flex flex-col items-start">
-        <button className="p-4 bg-white text-gray-900 rounded-lg">
+        <button
+          onClick={() => {
+            resetGame();
+          }}
+          className="p-4 bg-white text-gray-900 rounded-lg"
+        >
           Start New Game
         </button>
         <div className="flex items-center gap-4">
