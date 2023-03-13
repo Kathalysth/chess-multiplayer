@@ -7,6 +7,7 @@ import {
   getKingPossibleMovement,
   getKnightPossibleMovement,
   getPawnPossibleMovement,
+  getQueenPossibleMovement,
   resetPossibleMovement,
   SQUARE_COL,
   SQUARE_ROW,
@@ -94,6 +95,8 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
         coordinates = getBishopPossibleMovement(selectedSquare);
       } else if (selectedSquare.chessPiece?.piece.name === "king") {
         coordinates = getKingPossibleMovement(selectedSquare);
+      } else if (selectedSquare.chessPiece?.piece.name === "queen") {
+        coordinates = getQueenPossibleMovement(selectedSquare);
       }
       if (coordinates.length) {
         setOpenMoves(coordinates);
