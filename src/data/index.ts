@@ -10,6 +10,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -21,6 +25,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -32,6 +40,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -43,6 +55,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -54,6 +70,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -65,6 +85,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -76,6 +100,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -87,6 +115,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
   ],
@@ -100,6 +132,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -111,6 +147,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -122,6 +162,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -133,6 +177,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -144,6 +192,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -155,6 +207,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -166,6 +222,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -177,6 +237,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "down",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
   ],
@@ -230,6 +294,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -241,6 +309,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -252,6 +324,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -263,6 +339,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -274,6 +354,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -285,6 +369,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -296,6 +384,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -307,6 +399,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
   ],
@@ -320,6 +416,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -331,6 +431,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -342,6 +446,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -353,6 +461,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -364,6 +476,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -375,6 +491,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -386,6 +506,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
     {
@@ -397,6 +521,10 @@ export const squareInitialData: ChessSquare[][] = [
           direction: "up",
         },
         moves: [[0, 1]],
+        state: {
+          isInitialMove: false,
+          isUnderThreat: false,
+        },
       },
     },
   ],

@@ -4,14 +4,13 @@ import RenderPiece from "./RenderPiece";
 import { ChessContext } from "../context/chessContext";
 
 function Square({ square }: { square: ChessSquare }) {
-  const { selectSquare, selectedSquare } = useContext(
+  const { selectSquare, selectedSquare, findPossiblePieceMove } = useContext(
     ChessContext
   ) as ChessContextType;
 
   const offset: number =
     square.coordinates[0] * 8 + square.coordinates[1] + square.coordinates[0];
-  console.log(selectedSquare?.coordinates, "selected square");
-  console.log(square.coordinates, "actual Square");
+
   return (
     <div
       className={`aspect-square ${
@@ -25,6 +24,7 @@ function Square({ square }: { square: ChessSquare }) {
           piece={square.chessPiece.piece}
           onClick={() => {
             selectSquare(square);
+            findPossiblePieceMove(square);
           }}
         />
       ) : null}
@@ -37,7 +37,7 @@ function Square({ square }: { square: ChessSquare }) {
             selectedSquare &&
             selectedSquare.coordinates[0] === square.coordinates[0] &&
             selectedSquare.coordinates[1] === square.coordinates[1]
-              ? "bg-blue-400/[0.6]"
+              ? "bg-blue-400"
               : ""
           }`}
         />

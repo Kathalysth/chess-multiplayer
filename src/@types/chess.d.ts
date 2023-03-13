@@ -1,8 +1,18 @@
 // @types.chess.ts
 export type ChessPiece = {
-  piece: { name: string; color: string; direction: string };
+  piece: {
+    name: "pawn" | "king" | "queen" | "rook" | "bishop" | "knight";
+    color: string;
+    direction: string;
+  };
   moves: number[][];
+  state: PieceState;
   exceptions?: string;
+};
+
+export type PieceState = {
+  isInitialMove: boolean;
+  isUnderThreat: boolean;
 };
 
 export type PlayerMode = "white" | "black" | "default";
@@ -17,9 +27,11 @@ export type ChessSquare = {
 export type ChessContextType = {
   data: ChessSquare[][];
   playerMode: PlayerMode;
+  turn: PlayerMode;
   selectedSquare?: ChessSquare | null;
   togglePlayerMode: (value: string) => void;
+  toggleTurn: () => void;
   selectSquare: (square: ChessSquare) => void;
-  saveTodo?: (todo: ITodo) => void;
+  findPossiblePieceMove: (selectedSquare: ChessSquare) => void;
   updateTodo?: (id: number) => void;
 };

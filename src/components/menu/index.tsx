@@ -3,6 +3,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { ChessContext } from "../../context/chessContext";
 import { ChessSquare, ChessContextType } from "../../@types/chess";
+import UserDropdown from "../userdropdown";
 
 const modes: string[] = ["white", "black"];
 
@@ -13,14 +14,17 @@ function ChessMenu() {
   const [selected, setSelected] = useState<string>(modes[0]);
   return (
     <div className="order-0 md:order-1 w-full md:w-4/12 md:h-full p-4 overflow-y-auto">
-      <h3 className="text-3xl">Chess Mate</h3>
+      <div className="w-full h-fit flex justify-between items-center">
+        <h3 className="text-3xl">Chess Mate</h3>
+        <UserDropdown />
+      </div>
 
       <div className="mt-4 py-4  gap-4 flex flex-col items-start">
         <button className="p-4 bg-white text-gray-900 rounded-lg">
           Start New Game
         </button>
         <div className="flex items-center gap-4">
-          <h4>Play as:</h4>
+          <h4>Playing as:</h4>
           <Listbox
             value={selected}
             onChange={(value) => {
