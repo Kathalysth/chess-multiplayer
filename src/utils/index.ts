@@ -110,8 +110,8 @@ export function getBishopPossibleMovement(
     ...findValidPoints([row + offset * 2, column + offset * 2]),
     ...findValidPoints([row + offset * 3, column + offset * 3]),
     ...findValidPoints([row + offset * 4, column + offset * 4]),
-    ...findValidPoints([row + offset * 5, column + offset * 5]), // 2 cols up, 1 row right
-    ...findValidPoints([row + offset * 6, column + offset * 6]), // 2 cols up rows up 1 row left
+    ...findValidPoints([row + offset * 5, column + offset * 5]),
+    ...findValidPoints([row + offset * 6, column + offset * 6]),
     ...findValidPoints([row + offset * 7, column + offset * 7]),
     //up left
     ...findValidPoints([row + offset * 1, column + offset * -1]),
@@ -148,72 +148,115 @@ export function getQueenPossibleMovement(
     //up right diagonal
     ...findValidPoints([row + offset * 1, column + offset * 1]),
     ...findValidPoints([row + offset * 2, column + offset * 2]),
-    ...findValidPoints([row + offset * 3, column + offset * 3]), // 2 rows down 1 col right
+    ...findValidPoints([row + offset * 3, column + offset * 3]),
     ...findValidPoints([row + offset * 4, column + offset * 4]),
-    ...findValidPoints([row + offset * 5, column + offset * 5]), // 2 cols up, 1 row right
-    ...findValidPoints([row + offset * 6, column + offset * 6]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row + offset * 7, column + offset * 7]), // 2 cols down 1 row right
+    ...findValidPoints([row + offset * 5, column + offset * 5]),
+    ...findValidPoints([row + offset * 6, column + offset * 6]),
+    ...findValidPoints([row + offset * 7, column + offset * 7]),
 
     //right
     ...findValidPoints([row, column + offset * 1]),
     ...findValidPoints([row, column + offset * 2]),
-    ...findValidPoints([row, column + offset * 3]), // 2 rows down 1 col right
+    ...findValidPoints([row, column + offset * 3]),
     ...findValidPoints([row, column + offset * 4]),
-    ...findValidPoints([row, column + offset * 5]), // 2 cols up, 1 row right
-    ...findValidPoints([row, column + offset * 6]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row, column + offset * 7]), // 2 cols down 1 row right
+    ...findValidPoints([row, column + offset * 5]),
+    ...findValidPoints([row, column + offset * 6]),
+    ...findValidPoints([row, column + offset * 7]),
 
     //up
-    ...findValidPoints([row + offset * 1, column]), // 1 rows up, 1 col right
-    ...findValidPoints([row + offset * 2, column]), // 2 up rows up 1 col left
-    ...findValidPoints([row + offset * 3, column]), // 2 rows down 1 col right
-    ...findValidPoints([row + offset * 4, column]), // 2 rows down 1 col left
-    ...findValidPoints([row + offset * 5, column]), // 2 cols up, 1 row right
-    ...findValidPoints([row + offset * 6, column]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row + offset * 7, column]), // 2 cols down 1 row right
+    ...findValidPoints([row + offset * 1, column]),
+    ...findValidPoints([row + offset * 2, column]),
+    ...findValidPoints([row + offset * 3, column]),
+    ...findValidPoints([row + offset * 4, column]),
+    ...findValidPoints([row + offset * 5, column]),
+    ...findValidPoints([row + offset * 6, column]),
+    ...findValidPoints([row + offset * 7, column]),
 
     //up left diagonal
-    ...findValidPoints([row + offset * 1, column + offset * -1]), // 1 rows up, 1 col right
-    ...findValidPoints([row + offset * 2, column + offset * -2]), // 2 up rows up 1 col left
-    ...findValidPoints([row + offset * 3, column + offset * -3]), // 2 rows down 1 col right
-    ...findValidPoints([row + offset * 4, column + offset * -4]), // 2 rows down 1 col left
-    ...findValidPoints([row + offset * 5, column + offset * -5]), // 2 cols up, 1 row right
-    ...findValidPoints([row + offset * 6, column + offset * -6]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row + offset * 7, column + offset * -7]), // 2 cols down 1 row right
+    ...findValidPoints([row + offset * 1, column + offset * -1]),
+    ...findValidPoints([row + offset * 2, column + offset * -2]),
+    ...findValidPoints([row + offset * 3, column + offset * -3]),
+    ...findValidPoints([row + offset * 4, column + offset * -4]),
+    ...findValidPoints([row + offset * 5, column + offset * -5]),
+    ...findValidPoints([row + offset * 6, column + offset * -6]),
+    ...findValidPoints([row + offset * 7, column + offset * -7]),
     //down right diagonal
-    ...findValidPoints([row + offset * -1, column + offset * 1]), // 1 rows up, 1 col right
-    ...findValidPoints([row + offset * -2, column + offset * 2]), // 2 up rows up 1 col left
-    ...findValidPoints([row + offset * -3, column + offset * 3]), // 2 rows down 1 col right
-    ...findValidPoints([row + offset * -4, column + offset * 4]), // 2 rows down 1 col left
-    ...findValidPoints([row + offset * -5, column + offset * 5]), // 2 cols up, 1 row right
-    ...findValidPoints([row + offset * -6, column + offset * 6]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row + offset * -7, column + offset * 7]), // 2 cols down 1 row right
+    ...findValidPoints([row + offset * -1, column + offset * 1]),
+    ...findValidPoints([row + offset * -2, column + offset * 2]),
+    ...findValidPoints([row + offset * -3, column + offset * 3]),
+    ...findValidPoints([row + offset * -4, column + offset * 4]),
+    ...findValidPoints([row + offset * -5, column + offset * 5]),
+    ...findValidPoints([row + offset * -6, column + offset * 6]),
+    ...findValidPoints([row + offset * -7, column + offset * 7]),
     //down left diagonal
-    ...findValidPoints([row + offset * -1, column + offset * -1]), // 1 rows up, 1 col right
-    ...findValidPoints([row + offset * -2, column + offset * -2]), // 2 up rows up 1 col left
-    ...findValidPoints([row + offset * -3, column + offset * -3]), // 2 rows down 1 col right
-    ...findValidPoints([row + offset * -4, column + offset * -4]), // 2 rows down 1 col left
-    ...findValidPoints([row + offset * -5, column + offset * -5]), // 2 cols up, 1 row right
-    ...findValidPoints([row + offset * -6, column + offset * -6]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row + offset * -7, column + offset * -7]), // 2 cols down 1 row right
+    ...findValidPoints([row + offset * -1, column + offset * -1]),
+    ...findValidPoints([row + offset * -2, column + offset * -2]),
+    ...findValidPoints([row + offset * -3, column + offset * -3]),
+    ...findValidPoints([row + offset * -4, column + offset * -4]),
+    ...findValidPoints([row + offset * -5, column + offset * -5]),
+    ...findValidPoints([row + offset * -6, column + offset * -6]),
+    ...findValidPoints([row + offset * -7, column + offset * -7]),
 
     //left
     ...findValidPoints([row, column + offset * -1]),
-    ...findValidPoints([row, column + offset * -2]), // 2 up rows up 1 col left
-    ...findValidPoints([row, column + offset * -3]), // 2 rows down 1 col right
-    ...findValidPoints([row, column + offset * -4]), // 2 rows down 1 col left
-    ...findValidPoints([row, column + offset * -5]), // 2 cols up, 1 row right
-    ...findValidPoints([row, column + offset * -6]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row, column + offset * -7]), // 2 cols down 1 row right
+    ...findValidPoints([row, column + offset * -2]),
+    ...findValidPoints([row, column + offset * -3]),
+    ...findValidPoints([row, column + offset * -4]),
+    ...findValidPoints([row, column + offset * -5]),
+    ...findValidPoints([row, column + offset * -6]),
+    ...findValidPoints([row, column + offset * -7]),
 
     //down
     ...findValidPoints([row + offset * -1, column]),
-    ...findValidPoints([row + offset * -2, column]), // 2 up rows up 1 col left
-    ...findValidPoints([row + offset * -3, column]), // 2 rows down 1 col right
-    ...findValidPoints([row + offset * -4, column]), // 2 rows down 1 col left
-    ...findValidPoints([row + offset * -5, column]), // 2 cols up, 1 row right
-    ...findValidPoints([row + offset * -6, column]), // 2 cols up rows up 1 row left
-    ...findValidPoints([row + offset * -7, column]), // 2 cols down 1 row right
+    ...findValidPoints([row + offset * -2, column]),
+    ...findValidPoints([row + offset * -3, column]),
+    ...findValidPoints([row + offset * -4, column]),
+    ...findValidPoints([row + offset * -5, column]),
+    ...findValidPoints([row + offset * -6, column]),
+    ...findValidPoints([row + offset * -7, column]),
+  ];
+}
+export function getRookPossibleMovement(
+  selectedSquare: ChessSquare
+): number[][] {
+  const [row, column] = selectedSquare.coordinates;
+  const offset = getOffset(selectedSquare);
+  return [
+    //right
+    ...findValidPoints([row, column + offset * 1]),
+    ...findValidPoints([row, column + offset * 2]),
+    ...findValidPoints([row, column + offset * 3]),
+    ...findValidPoints([row, column + offset * 4]),
+    ...findValidPoints([row, column + offset * 5]),
+    ...findValidPoints([row, column + offset * 6]),
+    ...findValidPoints([row, column + offset * 7]),
+
+    //up
+    ...findValidPoints([row + offset * 1, column]),
+    ...findValidPoints([row + offset * 2, column]),
+    ...findValidPoints([row + offset * 3, column]),
+    ...findValidPoints([row + offset * 4, column]),
+    ...findValidPoints([row + offset * 5, column]),
+    ...findValidPoints([row + offset * 6, column]),
+    ...findValidPoints([row + offset * 7, column]),
+
+    //left
+    ...findValidPoints([row, column + offset * -1]),
+    ...findValidPoints([row, column + offset * -2]),
+    ...findValidPoints([row, column + offset * -3]),
+    ...findValidPoints([row, column + offset * -4]),
+    ...findValidPoints([row, column + offset * -5]),
+    ...findValidPoints([row, column + offset * -6]),
+    ...findValidPoints([row, column + offset * -7]),
+
+    //down
+    ...findValidPoints([row + offset * -1, column]),
+    ...findValidPoints([row + offset * -2, column]),
+    ...findValidPoints([row + offset * -3, column]),
+    ...findValidPoints([row + offset * -4, column]),
+    ...findValidPoints([row + offset * -5, column]),
+    ...findValidPoints([row + offset * -6, column]),
+    ...findValidPoints([row + offset * -7, column]),
   ];
 }
 
