@@ -9,6 +9,7 @@ import {
 import { ChessContext } from "../../context/chessContext";
 import { ChessSquare, ChessContextType } from "../../@types/chess";
 import UserDropdown from "../userdropdown";
+import OnlineMate from "../onlinemates";
 
 const modes: string[] = ["white", "black"];
 
@@ -149,7 +150,11 @@ function ChessMenu() {
       <h4 className="mt-4 flex gap-2 items-center">
         Mates online <span className="bg-teal-600 rounded-full w-3 h-3 block" />
       </h4>
-      <div className=" mt-1 h-32 max-h-96 bg-slate-50/[0.1]"></div>
+      <ul className=" mt-1 h-32 max-h-96 bg-slate-50/[0.1] p-1">
+        <li>
+          <OnlineMate />
+        </li>
+      </ul>
     </div>
   );
 }
