@@ -15,7 +15,16 @@ export type PieceState = {
   isUnderThreat: boolean;
 };
 
-export type Direction = number[];
+export type Direction =
+  | "up"
+  | "down"
+  | "right"
+  | "left"
+  | "up-left"
+  | "up-right"
+  | "down-left"
+  | "down-right";
+
 export type PlayerMode = "white" | "black" | "default";
 
 export type ChessSquare = {

@@ -44,7 +44,7 @@ function Square({ square }: { square: ChessSquare }) {
 
       {square.canCapture || square.canMoveInto || selectedSquare ? (
         <div
-          className={`absolute top-0 left-0 right-0 bottom-0 -z-[1] ${
+          className={`absolute top-0 left-0 right-0 bottom-0 ${
             square.canCapture ? "bg-red-500/[0.4]" : ""
           } ${square.canMoveInto ? "bg-teal-500/[0.4]" : ""} ${
             selectedSquare &&
@@ -52,7 +52,7 @@ function Square({ square }: { square: ChessSquare }) {
               square.coordinates[SQUARE_ROW] &&
             selectedSquare.coordinates[SQUARE_COL] ===
               square.coordinates[SQUARE_COL]
-              ? "bg-blue-400"
+              ? "bg-blue-400/[0.4]"
               : ""
           }`}
         />

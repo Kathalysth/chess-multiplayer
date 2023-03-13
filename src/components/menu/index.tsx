@@ -1,5 +1,5 @@
 import { Fragment, useState, useContext } from "react";
-import { Listbox, Transition } from "@headlessui/react";
+import { Listbox, Transition, Switch } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { ChessContext } from "../../context/chessContext";
 import { ChessSquare, ChessContextType } from "../../@types/chess";
@@ -12,8 +12,9 @@ function ChessMenu() {
     ChessContext
   ) as ChessContextType;
   const [selected, setSelected] = useState<string>(modes[0]);
+  const [enabledHints, setEnabledHints] = useState<boolean>(false);
   return (
-    <div className="order-0 md:order-1 w-full md:w-4/12 md:h-full p-4 overflow-y-auto">
+    <div className="order-0 md:order-1 w-full md:w-4/12 md:h-full p-4 pb-8 overflow-y-auto">
       <div className="w-full h-fit flex justify-between items-center">
         <h3 className="text-3xl">Chess Mate</h3>
         <UserDropdown />
@@ -91,7 +92,27 @@ function ChessMenu() {
           </Listbox>
         </div>
       </div>
-      <div className=" mt-4 h-48 max-h-96 bg-slate-50/[0.1]"></div>
+      <div className=" mt-4 h-48 max-h-96 bg-slate-50/[0.1] p-4">
+        <h4>Settings</h4>
+        <span className="flex gap-2 items-center">
+          <strong>Show hints</strong>
+          <Switch
+            checked={enabledHints}
+            onChange={setEnabledHints}
+            className={`${
+              enabledHints ? "bg-teal-600/[0.7]" : "bg-slate-100/[0.1]"
+            }
+          relative inline-flex h-[28px] w-[64px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+          >
+            <span className="sr-only">Use setting</span>
+            <span
+              aria-hidden="true"
+              className={`${enabledHints ? "translate-x-9" : "translate-x-0"}
+            pointer-events-none inline-block h-[24px] w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+            />
+          </Switch>
+        </span>
+      </div>
       <h4 className="mt-4 flex gap-2 items-center">
         Mates online <span className="bg-teal-600 rounded-full w-3 h-3 block" />
       </h4>

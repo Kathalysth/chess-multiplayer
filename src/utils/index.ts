@@ -1,4 +1,4 @@
-import { ChessSquare, ChessPiece } from "../@types/chess";
+import { ChessSquare, ChessPiece, Direction } from "../@types/chess";
 
 export const SQUARE_ROW = 0;
 export const SQUARE_COL = 1;
@@ -38,22 +38,6 @@ export function showPossibleMovementOrCapture(
   return currentData;
 }
 
-export function getPawnPossibleMovement(
-  selectedSquare: ChessSquare
-): number[][] {
-  const [row, column] = selectedSquare.coordinates;
-  const offset = getOffset(selectedSquare);
-  console.log(selectedSquare.chessPiece?.state.isInitialMove);
-  if (!selectedSquare.chessPiece?.state.isInitialMove) {
-    return [
-      ...findValidPoints([row + offset * 1, column]),
-      ...findValidPoints([row + offset * 2, column]),
-    ];
-  }
-
-  return [...findValidPoints([row + offset * 1, column])];
-}
-
 function findValidPoints(points: number[]): number[][] {
   return points[SQUARE_ROW] >= 0 &&
     points[SQUARE_ROW] <= 7 &&
@@ -62,9 +46,29 @@ function findValidPoints(points: number[]): number[][] {
     ? [points]
     : [];
 }
+function findValidBoundaries(points: number[]): number[] {
+  return points[SQUARE_ROW] >= 0 &&
+    points[SQUARE_ROW] <= 7 &&
+    points[SQUARE_COL] >= 0 &&
+    points[SQUARE_COL] <= 7
+    ? points
+    : [];
+}
+export function getPawnPossibleMovement(
+  selectedSquare: ChessSquare,
+  data: ChessSquare[][]
+): number[][] {
+  const offset = getOffset(selectedSquare);
+  if (!selectedSquare.chessPiece?.state.isInitialMove) {
+    return [...move(selectedSquare.coordinates, offset, 2, "up", data)];
+  }
+
+  return [...move(selectedSquare.coordinates, offset, 1, "up", data)];
+}
 
 export function getKnightPossibleMovement(
-  selectedSquare: ChessSquare
+  selectedSquare: ChessSquare,
+  data: ChessSquare[][]
 ): number[][] {
   const [row, column] = selectedSquare.coordinates;
   const offset = getOffset(selectedSquare);
@@ -80,205 +84,139 @@ export function getKnightPossibleMovement(
   ];
 }
 export function getKingPossibleMovement(
-  selectedSquare: ChessSquare
+  selectedSquare: ChessSquare,
+  data: ChessSquare[][]
 ): number[][] {
-  const [row, column] = selectedSquare.coordinates;
   const offset = getOffset(selectedSquare);
   if (!selectedSquare.chessPiece?.state.isInitialMove) {
     //can castle
     return [
-      ...findValidPoints([row + offset * 1, column + offset * 1]),
-      ...findValidPoints([row + offset * -1, column + offset * -1]),
-      ...findValidPoints([row + offset * 1, column]),
-      ...findValidPoints([row + offset * -1, column]),
-      ...findValidPoints([row, column + offset * 1]),
-      ...findValidPoints([row, column + offset * -1]),
-      ...findValidPoints([row + offset * -1, column + offset * 1]),
-      ...findValidPoints([row + offset * 1, column + offset * -1]),
+      //up right diagonal
+      ...move(selectedSquare.coordinates, offset, 1, "up-right", data),
+
+      //right
+      ...move(selectedSquare.coordinates, offset, 1, "right", data),
+
+      //up
+      ...move(selectedSquare.coordinates, offset, 1, "up", data),
+
+      //up left diagonal
+      ...move(selectedSquare.coordinates, offset, 1, "up-left", data),
+
+      //down right diagonal
+      ...move(selectedSquare.coordinates, offset, 1, "down-right", data),
+      //down left diagonal
+      ...move(selectedSquare.coordinates, offset, 1, "down-left", data),
+
+      //left
+      ...move(selectedSquare.coordinates, offset, 1, "left", data),
+
+      //down
+      ...move(selectedSquare.coordinates, offset, 1, "down", data),
     ];
   }
 
   return [
-    ...findValidPoints([row + offset * 1, column + offset * 1]),
-    ...findValidPoints([row + offset * -1, column + offset * -1]),
-    ...findValidPoints([row + offset * 1, column]),
-    ...findValidPoints([row + offset * -1, column]),
-    ...findValidPoints([row, column + offset * 1]),
-    ...findValidPoints([row, column + offset * -1]),
-    ...findValidPoints([row + offset * -1, column + offset * 1]),
-    ...findValidPoints([row + offset * 1, column + offset * -1]),
+    //up right diagonal
+    ...move(selectedSquare.coordinates, offset, 1, "up-right", data),
+
+    //right
+    ...move(selectedSquare.coordinates, offset, 1, "right", data),
+
+    //up
+    ...move(selectedSquare.coordinates, offset, 1, "up", data),
+
+    //up left diagonal
+    ...move(selectedSquare.coordinates, offset, 1, "up-left", data),
+
+    //down right diagonal
+    ...move(selectedSquare.coordinates, offset, 1, "down-right", data),
+    //down left diagonal
+    ...move(selectedSquare.coordinates, offset, 1, "down-left", data),
+
+    //left
+    ...move(selectedSquare.coordinates, offset, 1, "left", data),
+
+    //down
+    ...move(selectedSquare.coordinates, offset, 1, "down", data),
   ];
 }
 
 export function getBishopPossibleMovement(
-  selectedSquare: ChessSquare
+  selectedSquare: ChessSquare,
+  data: ChessSquare[][]
 ): number[][] {
-  const [row, column] = selectedSquare.coordinates;
   const offset = getOffset(selectedSquare);
   return [
     //up right
-    ...findValidPoints([row + offset * 1, column + offset * 1]),
-    ...findValidPoints([row + offset * 2, column + offset * 2]),
-    ...findValidPoints([row + offset * 3, column + offset * 3]),
-    ...findValidPoints([row + offset * 4, column + offset * 4]),
-    ...findValidPoints([row + offset * 5, column + offset * 5]),
-    ...findValidPoints([row + offset * 6, column + offset * 6]),
-    ...findValidPoints([row + offset * 7, column + offset * 7]),
+    ...move(selectedSquare.coordinates, offset, 7, "up-right", data),
     //up left
-    ...findValidPoints([row + offset * 1, column + offset * -1]),
-    ...findValidPoints([row + offset * 2, column + offset * -2]),
-    ...findValidPoints([row + offset * 3, column + offset * -3]),
-    ...findValidPoints([row + offset * 4, column + offset * -4]),
-    ...findValidPoints([row + offset * 5, column + offset * -5]),
-    ...findValidPoints([row + offset * 6, column + offset * -6]),
-    ...findValidPoints([row + offset * 7, column + offset * -7]),
-    //down right
-    ...findValidPoints([row + offset * -1, column + offset * 1]),
-    ...findValidPoints([row + offset * -2, column + offset * 2]),
-    ...findValidPoints([row + offset * -3, column + offset * 3]),
-    ...findValidPoints([row + offset * -4, column + offset * 4]),
-    ...findValidPoints([row + offset * -5, column + offset * 5]),
-    ...findValidPoints([row + offset * -6, column + offset * 6]),
-    ...findValidPoints([row + offset * -7, column + offset * 7]),
-    //down left
-    ...findValidPoints([row + offset * -1, column + offset * -1]),
-    ...findValidPoints([row + offset * -2, column + offset * -2]),
-    ...findValidPoints([row + offset * -3, column + offset * -3]),
-    ...findValidPoints([row + offset * -4, column + offset * -4]),
-    ...findValidPoints([row + offset * -5, column + offset * -5]),
-    ...findValidPoints([row + offset * -6, column + offset * -6]),
-    ...findValidPoints([row + offset * -7, column + offset * -7]),
+    ...move(selectedSquare.coordinates, offset, 7, "up-left", data),
+    //down right diagonal
+    ...move(selectedSquare.coordinates, offset, 7, "down-right", data),
+    //down left diagonal
+    ...move(selectedSquare.coordinates, offset, 7, "down-left", data),
   ];
 }
 export function getQueenPossibleMovement(
-  selectedSquare: ChessSquare
+  selectedSquare: ChessSquare,
+  data: ChessSquare[][]
 ): number[][] {
-  const [row, column] = selectedSquare.coordinates;
   const offset = getOffset(selectedSquare);
-  return [
+  const newCoordinates = [
     //up right diagonal
-    ...findValidPoints([row + offset * 1, column + offset * 1]),
-    ...findValidPoints([row + offset * 2, column + offset * 2]),
-    ...findValidPoints([row + offset * 3, column + offset * 3]),
-    ...findValidPoints([row + offset * 4, column + offset * 4]),
-    ...findValidPoints([row + offset * 5, column + offset * 5]),
-    ...findValidPoints([row + offset * 6, column + offset * 6]),
-    ...findValidPoints([row + offset * 7, column + offset * 7]),
+    ...move(selectedSquare.coordinates, offset, 7, "up-right", data),
 
     //right
-    ...findValidPoints([row, column + offset * 1]),
-    ...findValidPoints([row, column + offset * 2]),
-    ...findValidPoints([row, column + offset * 3]),
-    ...findValidPoints([row, column + offset * 4]),
-    ...findValidPoints([row, column + offset * 5]),
-    ...findValidPoints([row, column + offset * 6]),
-    ...findValidPoints([row, column + offset * 7]),
+    ...move(selectedSquare.coordinates, offset, 7, "right", data),
 
     //up
-    ...findValidPoints([row + offset * 1, column]),
-    ...findValidPoints([row + offset * 2, column]),
-    ...findValidPoints([row + offset * 3, column]),
-    ...findValidPoints([row + offset * 4, column]),
-    ...findValidPoints([row + offset * 5, column]),
-    ...findValidPoints([row + offset * 6, column]),
-    ...findValidPoints([row + offset * 7, column]),
+    ...move(selectedSquare.coordinates, offset, 7, "up", data),
 
     //up left diagonal
-    ...findValidPoints([row + offset * 1, column + offset * -1]),
-    ...findValidPoints([row + offset * 2, column + offset * -2]),
-    ...findValidPoints([row + offset * 3, column + offset * -3]),
-    ...findValidPoints([row + offset * 4, column + offset * -4]),
-    ...findValidPoints([row + offset * 5, column + offset * -5]),
-    ...findValidPoints([row + offset * 6, column + offset * -6]),
-    ...findValidPoints([row + offset * 7, column + offset * -7]),
+    ...move(selectedSquare.coordinates, offset, 7, "up-left", data),
 
     //down right diagonal
-    ...findValidPoints([row + offset * -1, column + offset * 1]),
-    ...findValidPoints([row + offset * -2, column + offset * 2]),
-    ...findValidPoints([row + offset * -3, column + offset * 3]),
-    ...findValidPoints([row + offset * -4, column + offset * 4]),
-    ...findValidPoints([row + offset * -5, column + offset * 5]),
-    ...findValidPoints([row + offset * -6, column + offset * 6]),
-    ...findValidPoints([row + offset * -7, column + offset * 7]),
+    ...move(selectedSquare.coordinates, offset, 7, "down-right", data),
     //down left diagonal
-    ...findValidPoints([row + offset * -1, column + offset * -1]),
-    ...findValidPoints([row + offset * -2, column + offset * -2]),
-    ...findValidPoints([row + offset * -3, column + offset * -3]),
-    ...findValidPoints([row + offset * -4, column + offset * -4]),
-    ...findValidPoints([row + offset * -5, column + offset * -5]),
-    ...findValidPoints([row + offset * -6, column + offset * -6]),
-    ...findValidPoints([row + offset * -7, column + offset * -7]),
+    ...move(selectedSquare.coordinates, offset, 7, "down-left", data),
 
     //left
-    ...findValidPoints([row, column + offset * -1]),
-    ...findValidPoints([row, column + offset * -2]),
-    ...findValidPoints([row, column + offset * -3]),
-    ...findValidPoints([row, column + offset * -4]),
-    ...findValidPoints([row, column + offset * -5]),
-    ...findValidPoints([row, column + offset * -6]),
-    ...findValidPoints([row, column + offset * -7]),
+    ...move(selectedSquare.coordinates, offset, 7, "left", data),
 
     //down
-    ...findValidPoints([row + offset * -1, column]),
-    ...findValidPoints([row + offset * -2, column]),
-    ...findValidPoints([row + offset * -3, column]),
-    ...findValidPoints([row + offset * -4, column]),
-    ...findValidPoints([row + offset * -5, column]),
-    ...findValidPoints([row + offset * -6, column]),
-    ...findValidPoints([row + offset * -7, column]),
+    ...move(selectedSquare.coordinates, offset, 7, "down", data),
   ];
+  return newCoordinates;
 }
 export function getRookPossibleMovement(
-  selectedSquare: ChessSquare
+  selectedSquare: ChessSquare,
+  data: ChessSquare[][]
 ): number[][] {
-  const [row, column] = selectedSquare.coordinates;
   const offset = getOffset(selectedSquare);
-  return [
+  const newCoordinates = [
     //right
-    ...findValidPoints([row, column + offset * 1]),
-    ...findValidPoints([row, column + offset * 2]),
-    ...findValidPoints([row, column + offset * 3]),
-    ...findValidPoints([row, column + offset * 4]),
-    ...findValidPoints([row, column + offset * 5]),
-    ...findValidPoints([row, column + offset * 6]),
-    ...findValidPoints([row, column + offset * 7]),
-
+    ...move(selectedSquare.coordinates, offset, 7, "right", data),
     //up
-    ...findValidPoints([row + offset * 1, column]),
-    ...findValidPoints([row + offset * 2, column]),
-    ...findValidPoints([row + offset * 3, column]),
-    ...findValidPoints([row + offset * 4, column]),
-    ...findValidPoints([row + offset * 5, column]),
-    ...findValidPoints([row + offset * 6, column]),
-    ...findValidPoints([row + offset * 7, column]),
-
+    ...move(selectedSquare.coordinates, offset, 7, "up", data),
     //left
-    ...findValidPoints([row, column + offset * -1]),
-    ...findValidPoints([row, column + offset * -2]),
-    ...findValidPoints([row, column + offset * -3]),
-    ...findValidPoints([row, column + offset * -4]),
-    ...findValidPoints([row, column + offset * -5]),
-    ...findValidPoints([row, column + offset * -6]),
-    ...findValidPoints([row, column + offset * -7]),
-
+    ...move(selectedSquare.coordinates, offset, 7, "left", data),
     //down
-    ...findValidPoints([row + offset * -1, column]),
-    ...findValidPoints([row + offset * -2, column]),
-    ...findValidPoints([row + offset * -3, column]),
-    ...findValidPoints([row + offset * -4, column]),
-    ...findValidPoints([row + offset * -5, column]),
-    ...findValidPoints([row + offset * -6, column]),
-    ...findValidPoints([row + offset * -7, column]),
+    ...move(selectedSquare.coordinates, offset, 7, "down", data),
   ];
+  return newCoordinates;
 }
 
-export function resetPossibleMovement(data: ChessSquare[][]) {
+export function resetPossibleMovementOrCapture(data: ChessSquare[][]) {
   let squares = [...data];
 
   data.forEach((d) => {
     d.forEach((f) => {
       if (f.canMoveInto && f.canMoveInto === true) {
         f.canMoveInto = false;
+      }
+      if (f.canCapture && f.canCapture === true) {
+        f.canCapture = false;
       }
     });
   });
@@ -297,4 +235,81 @@ export function indextoChessAlpha(index: number): string {
   if (index === 7) return "h";
 
   return "";
+}
+
+function move(
+  points: number[],
+  offset: number,
+  step: number,
+  direction: Direction,
+  data: ChessSquare[][]
+): number[][] {
+  const [row, column] = points;
+  let newRow = row;
+  let newCol = column;
+  let coordinates: number[][] = [];
+  for (let index = 1; index <= step; index++) {
+    newRow = computeNewRow(row, offset, index, direction);
+    newCol = computeNewColumn(column, offset, index, direction);
+    const validBoundaries = findValidBoundaries([newRow, newCol]);
+    if (validBoundaries.length) {
+      coordinates.push(validBoundaries);
+      if (data[validBoundaries[0]][validBoundaries[1]]?.chessPiece) {
+        return coordinates;
+      }
+    }
+  }
+  return coordinates;
+}
+
+function computeNewRow(
+  row: number,
+  offset: number,
+  index: number,
+  direction: Direction
+): number {
+  if (direction === "up") {
+    return row + offset * index;
+  } else if (direction === "right") {
+    return row;
+  } else if (direction === "left") {
+    return row;
+  } else if (direction === "down") {
+    return row + offset * -index;
+  } else if (direction === "down-left") {
+    return row + offset * -index;
+  } else if (direction === "down-right") {
+    return row + offset * -index;
+  } else if (direction === "up-left") {
+    return row + offset * index;
+  } else if (direction === "up-right") {
+    return row + offset * index;
+  }
+
+  return row;
+}
+function computeNewColumn(
+  column: number,
+  offset: number,
+  index: number,
+  direction: Direction
+): number {
+  if (direction === "up") {
+    return column;
+  } else if (direction === "right") {
+    return column + offset * index;
+  } else if (direction === "left") {
+    return column + offset * -index;
+  } else if (direction === "down") {
+    return column;
+  } else if (direction === "down-left") {
+    return column + offset * -index;
+  } else if (direction === "down-right") {
+    return column + offset * index;
+  } else if (direction === "up-left") {
+    return column + offset * -index;
+  } else if (direction === "up-right") {
+    return column + offset * index;
+  }
+  return column;
 }

@@ -9,7 +9,7 @@ import {
   getPawnPossibleMovement,
   getQueenPossibleMovement,
   getRookPossibleMovement,
-  resetPossibleMovement,
+  resetPossibleMovementOrCapture,
   SQUARE_COL,
   SQUARE_ROW,
 } from "../utils";
@@ -68,7 +68,7 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
 
       delete newData[originCord_row][originCord_col].chessPiece;
 
-      newData = resetPossibleMovement(newData);
+      newData = resetPossibleMovementOrCapture(newData);
       setSelectedSquare(null);
       toggleTurn();
       setData(newData);
@@ -89,33 +89,43 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
     if (selectedSquare !== null) {
       let coordinates: number[][] = [];
       if (selectedSquare.chessPiece?.piece.name === "pawn") {
-        coordinates = getPawnPossibleMovement(selectedSquare);
+        coordinates = getPawnPossibleMovement(selectedSquare, data);
       } else if (selectedSquare.chessPiece?.piece.name === "knight") {
-        coordinates = getKnightPossibleMovement(selectedSquare);
+        coordinates = getKnightPossibleMovement(selectedSquare, data);
       } else if (selectedSquare.chessPiece?.piece.name === "bishop") {
-        coordinates = getBishopPossibleMovement(selectedSquare);
+        coordinates = getBishopPossibleMovement(selectedSquare, data);
       } else if (selectedSquare.chessPiece?.piece.name === "king") {
-        coordinates = getKingPossibleMovement(selectedSquare);
+        coordinates = getKingPossibleMovement(selectedSquare, data);
       } else if (selectedSquare.chessPiece?.piece.name === "queen") {
-        coordinates = getQueenPossibleMovement(selectedSquare);
+        coordinates = getQueenPossibleMovement(selectedSquare, data);
       } else if (selectedSquare.chessPiece?.piece.name === "rook") {
-        coordinates = getRookPossibleMovement(selectedSquare);
+        coordinates = getRookPossibleMovement(selectedSquare, data);
       }
       if (coordinates.length) {
         setOpenMoves(coordinates);
       }
-      updateSquaresWithCoordinates(coordinates);
+      updateSquaresWithCoordinates(coordinates, selectedSquare);
     }
   };
 
-  function updateSquaresWithCoordinates(coordinates: number[][]) {
-    let newData = resetPossibleMovement(data);
+  function updateSquaresWithCoordinates(
+    coordinates: number[][],
+    square: ChessSquare
+  ) {
+    let newData = resetPossibleMovementOrCapture(data);
+
     coordinates.forEach((coordinates: number[]) => {
+      const [tCord_row, tCord_col] = coordinates;
+
+      if (!newData[tCord_row][tCord_col].chessPiece) {
+        newData[tCord_row][tCord_col].canMoveInto = true;
+      }
+
       if (
-        !newData[coordinates[SQUARE_ROW]][coordinates[SQUARE_COL]].chessPiece
+        newData[tCord_row][tCord_col].chessPiece?.piece.color !==
+        square?.chessPiece?.piece.color
       ) {
-        newData[coordinates[SQUARE_ROW]][coordinates[SQUARE_COL]].canMoveInto =
-          true;
+        newData[tCord_row][tCord_col].canCapture = true;
       }
     });
 
