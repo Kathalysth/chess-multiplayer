@@ -3,6 +3,17 @@ import { ChessSquare, ChessPiece } from "../@types/chess";
 export const SQUARE_ROW = 0;
 export const SQUARE_COL = 1;
 
+export const directions = {
+  up: [1, 0],
+  down: [-1, 0],
+  left: [0, -1],
+  right: [0, 1],
+  "up-right": [1, 1],
+  "up-left": [1, -1],
+  "down-right": [-1, 1],
+  "down-left": [-1, -1],
+};
+
 function getOffset(selectedSquare: ChessSquare): number {
   return selectedSquare.chessPiece?.piece.direction === "up" ? -1 : 1;
 }
@@ -180,6 +191,7 @@ export function getQueenPossibleMovement(
     ...findValidPoints([row + offset * 5, column + offset * -5]),
     ...findValidPoints([row + offset * 6, column + offset * -6]),
     ...findValidPoints([row + offset * 7, column + offset * -7]),
+
     //down right diagonal
     ...findValidPoints([row + offset * -1, column + offset * 1]),
     ...findValidPoints([row + offset * -2, column + offset * 2]),

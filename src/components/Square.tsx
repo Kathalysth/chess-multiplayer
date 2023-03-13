@@ -8,6 +8,7 @@ function Square({ square }: { square: ChessSquare }) {
   const {
     selectSquare,
     selectedSquare,
+    turn,
     findPossiblePieceMove,
     initiateMoveInto,
   } = useContext(ChessContext) as ChessContextType;
@@ -20,10 +21,10 @@ function Square({ square }: { square: ChessSquare }) {
   return (
     <button
       onClick={() => {
-        if (square.chessPiece) {
+        if (square.chessPiece && square.chessPiece.piece.color === turn) {
           selectSquare(square);
           findPossiblePieceMove(square);
-        } else {
+        } else if (selectedSquare) {
           initiateMoveInto(square);
         }
       }}

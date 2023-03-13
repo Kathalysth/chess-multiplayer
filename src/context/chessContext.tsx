@@ -21,7 +21,7 @@ interface Props {
 }
 
 const ChessProvider: React.FC<Props> = ({ children }) => {
-  const [turn, setTurn] = React.useState<PlayerMode>("default");
+  const [turn, setTurn] = React.useState<PlayerMode>("white");
   const [openMoves, setOpenMoves] = React.useState<number[][]>([]);
   const [data, setData] = React.useState<ChessSquare[][]>([
     ...squareInitialData,
@@ -69,8 +69,8 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
       delete newData[originCord_row][originCord_col].chessPiece;
 
       newData = resetPossibleMovement(newData);
-      console.log(newData);
       setSelectedSquare(null);
+      toggleTurn();
       setData(newData);
     }
   };
@@ -82,7 +82,7 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
     setData(newData);
     setOpenMoves([]);
     setSelectedSquare(null);
-    setTurn("default");
+    setTurn("white");
   };
 
   const findPossiblePieceMove = (selectedSquare: ChessSquare) => {
