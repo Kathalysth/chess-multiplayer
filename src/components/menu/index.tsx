@@ -1,6 +1,11 @@
 import { Fragment, useState, useContext } from "react";
 import { Listbox, Transition, Switch } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import {
+  CheckIcon,
+  ChevronUpDownIcon,
+  ArrowUturnLeftIcon,
+  ArrowUturnRightIcon,
+} from "@heroicons/react/20/solid";
 import { ChessContext } from "../../context/chessContext";
 import { ChessSquare, ChessContextType } from "../../@types/chess";
 import UserDropdown from "../userdropdown";
@@ -13,6 +18,7 @@ function ChessMenu() {
   ) as ChessContextType;
   const [selected, setSelected] = useState<string>(modes[0]);
   const [enabledHints, setEnabledHints] = useState<boolean>(false);
+  const [enabledSound, setEnabledSound] = useState<boolean>(false);
   return (
     <div className="order-0 md:order-1 w-full md:w-4/12 md:h-full p-4 pb-8 overflow-y-auto">
       <div className="w-full h-fit flex justify-between items-center">
@@ -21,14 +27,23 @@ function ChessMenu() {
       </div>
 
       <div className="mt-4 py-4  gap-4 flex flex-col items-start">
-        <button
-          onClick={() => {
-            resetGame();
-          }}
-          className="p-4 bg-white text-gray-900 rounded-lg"
-        >
-          Start New Game
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => {
+              resetGame();
+            }}
+            className="p-4 bg-white text-gray-900 rounded-lg"
+          >
+            Start New Game
+          </button>
+          <button className="p-2 text-white bg-slate-50/[0.2] flex gap-2 rounded-lg items-center">
+            <ArrowUturnLeftIcon
+              className="h-5 w-5 text-white"
+              aria-hidden="true"
+            />
+            Undo Move
+          </button>
+        </div>
         <div className="flex items-center gap-4">
           <h4>Playing as:</h4>
           <Listbox
@@ -108,6 +123,24 @@ function ChessMenu() {
             <span
               aria-hidden="true"
               className={`${enabledHints ? "translate-x-9" : "translate-x-0"}
+            pointer-events-none inline-block h-[24px] w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+            />
+          </Switch>
+        </span>
+        <span className="flex mt-4 gap-2 items-center">
+          <strong>Enable Sound</strong>
+          <Switch
+            checked={enabledSound}
+            onChange={setEnabledSound}
+            className={`${
+              enabledSound ? "bg-teal-600/[0.7]" : "bg-slate-100/[0.1]"
+            }
+          relative inline-flex h-[28px] w-[64px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+          >
+            <span className="sr-only">Enable Sound</span>
+            <span
+              aria-hidden="true"
+              className={`${enabledSound ? "translate-x-9" : "translate-x-0"}
             pointer-events-none inline-block h-[24px] w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
             />
           </Switch>

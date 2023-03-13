@@ -3,39 +3,8 @@ import { ChessSquare, ChessPiece, Direction } from "../@types/chess";
 export const SQUARE_ROW = 0;
 export const SQUARE_COL = 1;
 
-export const directions = {
-  up: [1, 0],
-  down: [-1, 0],
-  left: [0, -1],
-  right: [0, 1],
-  "up-right": [1, 1],
-  "up-left": [1, -1],
-  "down-right": [-1, 1],
-  "down-left": [-1, -1],
-};
-
 function getOffset(selectedSquare: ChessSquare): number {
   return selectedSquare.chessPiece?.piece.direction === "up" ? -1 : 1;
-}
-export function handlePiecesMovement(
-  chessPiece: ChessPiece,
-  currentData: ChessSquare[][]
-): ChessSquare[][] {
-  return currentData;
-}
-
-export function handlePiecesCapture(
-  chessPiece: ChessPiece,
-  currentData: ChessSquare[][]
-): ChessSquare[][] {
-  return currentData;
-}
-
-export function showPossibleMovementOrCapture(
-  chessPiece: ChessPiece,
-  currentData: ChessSquare[][]
-): ChessSquare[][] {
-  return currentData;
 }
 
 function findValidPoints(points: number[]): number[][] {
@@ -59,11 +28,16 @@ export function getPawnPossibleMovement(
   data: ChessSquare[][]
 ): number[][] {
   const offset = getOffset(selectedSquare);
+  let maxMovement = 1;
   if (!selectedSquare.chessPiece?.state.isInitialMove) {
-    return [...move(selectedSquare.coordinates, offset, 2, "up", data)];
+    maxMovement = 2;
   }
 
-  return [...move(selectedSquare.coordinates, offset, 1, "up", data)];
+  return [
+    ...pawnCanAdvance(selectedSquare, offset, maxMovement, "up", data),
+    ...pawnTakesDiagonally(selectedSquare, offset, 1, "up-left", data),
+    ...pawnTakesDiagonally(selectedSquare, offset, 1, "up-right", data),
+  ];
 }
 
 export function getKnightPossibleMovement(
@@ -83,6 +57,7 @@ export function getKnightPossibleMovement(
     ...findValidPoints([row + offset * -1, column + offset * -2]), // 2 cols down 1 row left
   ];
 }
+
 export function getKingPossibleMovement(
   selectedSquare: ChessSquare,
   data: ChessSquare[][]
@@ -189,6 +164,7 @@ export function getQueenPossibleMovement(
   ];
   return newCoordinates;
 }
+
 export function getRookPossibleMovement(
   selectedSquare: ChessSquare,
   data: ChessSquare[][]
@@ -313,3 +289,54 @@ function computeNewColumn(
   }
   return column;
 }
+function pawnTakesDiagonally(
+  selectedSquare: ChessSquare,
+  offset: number,
+  maxMovement: number,
+  direction: Direction,
+  data: ChessSquare[][]
+) {
+  const [row, column] = selectedSquare.coordinates;
+  let newRow = row;
+  let newCol = column;
+  let coordinates: number[][] = [];
+  for (let index = 1; index <= maxMovement; index++) {
+    newRow = computeNewRow(row, offset, index, direction);
+    newCol = computeNewColumn(column, offset, index, direction);
+    const validBoundaries = findValidBoundaries([newRow, newCol]);
+    if (
+      validBoundaries.length &&
+      data[validBoundaries[0]][validBoundaries[1]]?.chessPiece
+    ) {
+      coordinates.push(validBoundaries);
+    }
+  }
+  return coordinates;
+}
+
+function pawnCanAdvance(
+  selectedSquare: ChessSquare,
+  offset: number,
+  maxMovement: number,
+  direction: Direction,
+  data: ChessSquare[][]
+) {
+  const [row, column] = selectedSquare.coordinates;
+  let newRow = row;
+  let newCol = column;
+  let coordinates: number[][] = [];
+  for (let index = 1; index <= maxMovement; index++) {
+    newRow = computeNewRow(row, offset, index, direction);
+    newCol = computeNewColumn(column, offset, index, direction);
+    const validBoundaries = findValidBoundaries([newRow, newCol]);
+    if (
+      validBoundaries.length &&
+      !data[validBoundaries[0]][validBoundaries[1]]?.chessPiece
+    ) {
+      coordinates.push(validBoundaries);
+    }
+  }
+  return coordinates;
+}
+
+function threatToKing() {}

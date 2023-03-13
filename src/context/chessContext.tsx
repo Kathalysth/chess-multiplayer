@@ -65,17 +65,21 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
       const [tCord_row, tCord_col] = targetSquareCoord;
       const [originCord_row, originCord_col] = selectedSquare.coordinates;
 
-      newData[tCord_row][tCord_col].chessPiece = {
-        ...selectedSquare.chessPiece,
-        state: { ...selectedSquare.chessPiece.state, isInitialMove: true },
-      };
-
-      delete newData[originCord_row][originCord_col].chessPiece;
-
-      newData = resetPossibleMovementOrCapture(newData);
-      setSelectedSquare(null);
-      toggleTurn();
-      setData(newData);
+      if (
+        (newData[tCord_row][tCord_col].chessPiece &&
+          newData[tCord_row][tCord_col].canCapture) ||
+        !newData[tCord_row][tCord_col].chessPiece
+      ) {
+        newData[tCord_row][tCord_col].chessPiece = {
+          ...selectedSquare.chessPiece,
+          state: { ...selectedSquare.chessPiece.state, isInitialMove: true },
+        };
+        delete newData[originCord_row][originCord_col].chessPiece;
+        newData = resetPossibleMovementOrCapture(newData);
+        setSelectedSquare(null);
+        toggleTurn();
+        setData(newData);
+      }
     }
   };
 
