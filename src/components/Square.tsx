@@ -21,20 +21,17 @@ function Square({ square }: { square: ChessSquare }) {
   return (
     <button
       onClick={() => {
-        if (
-          square.chessPiece &&
-          square.chessPiece.piece.color === turn &&
-          !selectedSquare
-        ) {
-          selectSquare(square);
-          findPossiblePieceMove(square);
-        } else if (
-          selectedSquare &&
-          square.chessPiece &&
-          selectedSquare.coordinates[0] === square.coordinates[0] &&
-          selectedSquare.coordinates[1] === square.coordinates[1]
-        ) {
-          selectSquare(null);
+        if (square.chessPiece && square.chessPiece.piece.color === turn) {
+          if (
+            selectedSquare &&
+            selectedSquare.coordinates[0] === square.coordinates[0] &&
+            selectedSquare.coordinates[1] === square.coordinates[1]
+          ) {
+            selectSquare(null);
+          } else {
+            selectSquare(square);
+            findPossiblePieceMove(square);
+          }
         } else {
           initiateMoveInto(square);
         }
