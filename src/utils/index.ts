@@ -68,6 +68,37 @@ export function getKnightPossibleMovement(
     ...findValidPoints([row + offset * -1, column + offset * -2]), // 2 cols down 1 row left
   ];
 }
+export function getKingPossibleMovement(
+  selectedSquare: ChessSquare
+): number[][] {
+  const [row, column] = selectedSquare.coordinates;
+  const offset = getOffset(selectedSquare);
+  if (!selectedSquare.chessPiece?.state.isInitialMove) {
+    //can castle
+    return [
+      ...findValidPoints([row + offset * 1, column + offset * 1]),
+      ...findValidPoints([row + offset * -1, column + offset * -1]),
+      ...findValidPoints([row + offset * 1, column]),
+      ...findValidPoints([row + offset * -1, column]),
+      ...findValidPoints([row, column + offset * 1]),
+      ...findValidPoints([row, column + offset * -1]),
+      ...findValidPoints([row + offset * -1, column + offset * 1]),
+      ...findValidPoints([row + offset * 1, column + offset * -1]),
+    ];
+  }
+
+  return [
+    ...findValidPoints([row + offset * 1, column + offset * 1]),
+    ...findValidPoints([row + offset * -1, column + offset * -1]),
+    ...findValidPoints([row + offset * 1, column]),
+    ...findValidPoints([row + offset * -1, column]),
+    ...findValidPoints([row, column + offset * 1]),
+    ...findValidPoints([row, column + offset * -1]),
+    ...findValidPoints([row + offset * -1, column + offset * 1]),
+    ...findValidPoints([row + offset * 1, column + offset * -1]),
+  ];
+}
+
 export function getBishopPossibleMovement(
   selectedSquare: ChessSquare
 ): number[][] {

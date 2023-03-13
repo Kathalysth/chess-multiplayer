@@ -4,6 +4,7 @@ import { ChessContextType, ChessSquare, PlayerMode } from "../@types/chess";
 import { squareInitialData } from "../data";
 import {
   getBishopPossibleMovement,
+  getKingPossibleMovement,
   getKnightPossibleMovement,
   getPawnPossibleMovement,
   resetPossibleMovement,
@@ -91,6 +92,8 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
         coordinates = getKnightPossibleMovement(selectedSquare);
       } else if (selectedSquare.chessPiece?.piece.name === "bishop") {
         coordinates = getBishopPossibleMovement(selectedSquare);
+      } else if (selectedSquare.chessPiece?.piece.name === "king") {
+        coordinates = getKingPossibleMovement(selectedSquare);
       }
       if (coordinates.length) {
         setOpenMoves(coordinates);
