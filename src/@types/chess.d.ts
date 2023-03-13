@@ -43,7 +43,7 @@ export type ChessContextType = {
   resetGame: () => void;
   togglePlayerMode: (value: string) => void;
   toggleTurn: () => void;
-  selectSquare: (square: ChessSquare) => void;
+  selectSquare: (square: ChessSquare | null) => void;
   findPossiblePieceMove: (selectedSquare: ChessSquare) => void;
   initiateMoveInto: (selectedSquare: ChessSquare) => void;
 };

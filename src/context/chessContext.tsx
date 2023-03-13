@@ -30,7 +30,11 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
   const [selectedSquare, setSelectedSquare] =
     React.useState<ChessSquare | null>(null);
 
-  const selectSquare = (square: ChessSquare) => {
+  const selectSquare = (square: ChessSquare | null) => {
+    if (square === null) {
+      const newData = resetPossibleMovementOrCapture([...data]);
+      setData(newData);
+    }
     setSelectedSquare(square);
   };
 
