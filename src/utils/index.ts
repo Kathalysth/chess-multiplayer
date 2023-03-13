@@ -1,5 +1,8 @@
 import { ChessSquare, ChessPiece } from "../@types/chess";
 
+export const SQUARE_ROW = 0;
+export const SQUARE_COL = 1;
+
 function getOffset(selectedSquare: ChessSquare): number {
   return selectedSquare.chessPiece?.piece.direction === "up" ? -1 : 1;
 }
@@ -40,8 +43,8 @@ export function getPawnPossibleMovement(
 }
 
 function findValidPoints(points: number[]): number[][] {
-  return (points[0] >= 0 || points[0] <= 7) &&
-    (points[1] >= 0 || points[1] <= 7)
+  return (points[SQUARE_ROW] >= 0 || points[SQUARE_ROW] <= 7) &&
+    (points[SQUARE_COL] >= 0 || points[SQUARE_COL] <= 7)
     ? [points]
     : [];
 }
@@ -71,4 +74,17 @@ export function resetPossibleMovement(data: ChessSquare[][]) {
   });
 
   return squares;
+}
+
+export function indextoChessAlpha(index: number): string {
+  if (index === 0) return "a";
+  if (index === 1) return "b";
+  if (index === 2) return "c";
+  if (index === 3) return "d";
+  if (index === 4) return "e";
+  if (index === 5) return "f";
+  if (index === 6) return "g";
+  if (index === 7) return "h";
+
+  return "";
 }

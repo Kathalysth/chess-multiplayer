@@ -6,6 +6,8 @@ import {
   getKnightPossibleMovement,
   getPawnPossibleMovement,
   resetPossibleMovement,
+  SQUARE_COL,
+  SQUARE_ROW,
 } from "../utils";
 
 export const ChessContext = React.createContext<ChessContextType | null>(null);
@@ -55,9 +57,12 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
 
   function updateSquaresWithCoordinates(coordinates: number[][]) {
     let newData = resetPossibleMovement(data);
-    coordinates.forEach((coordinate: number[]) => {
-      if (!newData[coordinate[0]][coordinate[1]].chessPiece) {
-        newData[coordinate[0]][coordinate[1]].canMoveInto = true;
+    coordinates.forEach((coordinates: number[]) => {
+      if (
+        !newData[coordinates[SQUARE_ROW]][coordinates[SQUARE_COL]].chessPiece
+      ) {
+        newData[coordinates[SQUARE_ROW]][coordinates[SQUARE_COL]].canMoveInto =
+          true;
       }
     });
     setData(newData);

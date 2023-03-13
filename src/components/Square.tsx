@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ChessSquare, ChessContextType } from "../@types/chess";
 import RenderPiece from "./RenderPiece";
 import { ChessContext } from "../context/chessContext";
+import { indextoChessAlpha, SQUARE_COL, SQUARE_ROW } from "../utils";
 
 function Square({ square }: { square: ChessSquare }) {
   const { selectSquare, selectedSquare, findPossiblePieceMove } = useContext(
@@ -9,10 +10,16 @@ function Square({ square }: { square: ChessSquare }) {
   ) as ChessContextType;
 
   const offset: number =
-    square.coordinates[0] * 8 + square.coordinates[1] + square.coordinates[0];
+    square.coordinates[SQUARE_ROW] * 8 +
+    square.coordinates[SQUARE_COL] +
+    square.coordinates[SQUARE_ROW];
 
   return (
-    <div
+    <button
+      role="button"
+      aria-label={`cell-${
+        square.coordinates[SQUARE_ROW] + 1
+      }${indextoChessAlpha(square.coordinates[SQUARE_COL])} button`}
       className={`aspect-square ${
         offset % 2 === 0 ? "bg-stone-600/[0.8]" : "bg-slate-300/[0.8]"
       } flex justify-center items-center relative ${
@@ -35,14 +42,16 @@ function Square({ square }: { square: ChessSquare }) {
             square.canCapture ? "bg-red-500/[0.4]" : ""
           } ${square.canMoveInto ? "bg-teal-500/[0.4]" : ""} ${
             selectedSquare &&
-            selectedSquare.coordinates[0] === square.coordinates[0] &&
-            selectedSquare.coordinates[1] === square.coordinates[1]
+            selectedSquare.coordinates[SQUARE_ROW] ===
+              square.coordinates[SQUARE_ROW] &&
+            selectedSquare.coordinates[SQUARE_COL] ===
+              square.coordinates[SQUARE_COL]
               ? "bg-blue-400"
               : ""
           }`}
         />
       ) : null}
-    </div>
+    </button>
   );
 }
 
