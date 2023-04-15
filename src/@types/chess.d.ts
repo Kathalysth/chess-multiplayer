@@ -2,17 +2,19 @@
 export type ChessPiece = {
   piece: {
     name: "pawn" | "king" | "queen" | "rook" | "bishop" | "knight";
-    color: string;
-    direction: string;
+    color: "white" | "black";
+    direction: "up" | "down";
   };
-  moves: number[][];
+  moves: string[];
   state: PieceState;
-  exceptions?: string;
 };
 
 export type PieceState = {
   isInitialMove: boolean;
-  isUnderThreat: boolean;
+  canCapture: string[];
+  threats: string[];
+  isProtectingKing?: boolean;
+  isKingUnderThreat?: boolean;
 };
 
 export type Direction =
@@ -23,27 +25,40 @@ export type Direction =
   | "up-left"
   | "up-right"
   | "down-left"
-  | "down-right";
+  | "down-right"
+  | "left-up"
+  | "left-down"
+  | "right-up"
+  | "right-down";
 
 export type PlayerMode = "white" | "black" | "default";
 
 export type ChessSquare = {
-  coordinates: Array<number>;
-  chessPiece?: ChessPiece;
-  canCapture?: boolean;
-  canMoveInto?: boolean;
+  bg: "black" | "white";
+  id: string;
+  index: number;
+  boundary: {
+    left: number;
+    right: number;
+  };
+  chessPiece: ChessPiece | null;
 };
 
 export type ChessContextType = {
-  data: ChessSquare[][];
+  data: ChessSquare[];
   playerMode: PlayerMode;
   turn: PlayerMode;
   selectedSquare?: ChessSquare | null;
-  openMoves: number[][];
+  movables: string[];
+  captures: string[];
+  selectedSquareMoves: string[];
   resetGame: () => void;
   togglePlayerMode: (value: string) => void;
   toggleTurn: () => void;
   selectSquare: (square: ChessSquare | null) => void;
-  findPossiblePieceMove: (selectedSquare: ChessSquare) => void;
+  findLegalMoves: (
+    selectedSquare: ChessSquare,
+    data: ChessSquare[]
+  ) => string[];
   initiateMoveInto: (selectedSquare: ChessSquare) => void;
 };

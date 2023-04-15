@@ -1,18 +1,11 @@
 // context/todoContext.tsx
 import * as React from "react";
+import useSound from "use-sound";
 import { ChessContextType, ChessSquare, PlayerMode } from "../@types/chess";
 import { squareInitialData } from "../data";
-import {
-  getBishopPossibleMovement,
-  getKingPossibleMovement,
-  getKnightPossibleMovement,
-  getPawnPossibleMovement,
-  getQueenPossibleMovement,
-  getRookPossibleMovement,
-  resetPossibleMovementOrCapture,
-  SQUARE_COL,
-  SQUARE_ROW,
-} from "../utils";
+import startSoundFx from "../assets/sfx/board-start.mp3";
+import pieceMoveFx from "../assets/sfx/piece-placement.mp3";
+import { getLegalMoves, calculateOpponentsLegalMoves } from "../utils";
 
 export const ChessContext = React.createContext<ChessContextType | null>(null);
 
@@ -21,20 +14,22 @@ interface Props {
 }
 
 const ChessProvider: React.FC<Props> = ({ children }) => {
+  const [startSound] = useSound(startSoundFx, { volume: 0.75 });
+  const [moveSound] = useSound(pieceMoveFx, { volume: 0.75 });
+  const [movables, setMovables] = React.useState<string[]>([]);
+  const [captures, setCaptures] = React.useState<string[]>([]);
   const [turn, setTurn] = React.useState<PlayerMode>("white");
-  const [openMoves, setOpenMoves] = React.useState<number[][]>([]);
-  const [data, setData] = React.useState<ChessSquare[][]>([
-    ...squareInitialData,
-  ]);
+  const [selectedSquareMoves, setSelectedSquareMoves] = React.useState<
+    string[]
+  >([]);
+  const [data, setData] = React.useState<ChessSquare[]>(
+    JSON.parse(JSON.stringify(squareInitialData))
+  );
   const [playerMode, setPlayerMode] = React.useState<PlayerMode>("default");
   const [selectedSquare, setSelectedSquare] =
     React.useState<ChessSquare | null>(null);
 
   const selectSquare = (square: ChessSquare | null) => {
-    if (square === null) {
-      const newData = resetPossibleMovementOrCapture([...data]);
-      setData(newData);
-    }
     setSelectedSquare(square);
   };
 
@@ -54,97 +49,105 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
     setTurn("white");
   };
 
-  const initiateMoveInto = (originSquare: ChessSquare) => {
-    const targetSquareCoord: number[] | undefined = openMoves.find(
-      (move) =>
-        move[SQUARE_ROW] === originSquare.coordinates[SQUARE_ROW] &&
-        move[SQUARE_COL] === originSquare.coordinates[SQUARE_COL]
-    );
-    if (targetSquareCoord && selectedSquare && selectedSquare.chessPiece) {
-      let newData = [...data];
-      const [tCord_row, tCord_col] = targetSquareCoord;
-      const [originCord_row, originCord_col] = selectedSquare.coordinates;
+  const initiateMoveInto = (targetSquare: ChessSquare) => {
+    if (selectedSquare && selectedSquare.chessPiece) {
+      const targetSquareID: string | undefined = selectedSquareMoves.find(
+        (move) => move === targetSquare.id
+      );
+      if (targetSquareID) {
+        if (
+          (targetSquare.chessPiece &&
+            selectedSquare.chessPiece.state.canCapture.includes(
+              targetSquareID
+            )) ||
+          !targetSquare.chessPiece
+        ) {
+          data[targetSquare.index].chessPiece = {
+            ...selectedSquare.chessPiece,
+            state: { ...selectedSquare.chessPiece.state, isInitialMove: true },
+          };
+          data[selectedSquare.index].chessPiece = null;
 
-      if (
-        (newData[tCord_row][tCord_col].chessPiece &&
-          newData[tCord_row][tCord_col].canCapture) ||
-        !newData[tCord_row][tCord_col].chessPiece
-      ) {
-        newData[tCord_row][tCord_col].chessPiece = {
-          ...selectedSquare.chessPiece,
-          state: { ...selectedSquare.chessPiece.state, isInitialMove: true },
-        };
-        delete newData[originCord_row][originCord_col].chessPiece;
-        newData = resetPossibleMovementOrCapture(newData);
-        setSelectedSquare(null);
-        toggleTurn();
-        setData(newData);
+          // update the piece moves
+          data[targetSquare.index].chessPiece?.moves ===
+            findLegalMoves(data[targetSquare.index], data);
+
+          calculateOpponentsLegalMoves(
+            data.filter(
+              (square) =>
+                square.chessPiece &&
+                square.chessPiece?.piece.color !==
+                  data[targetSquare.index].chessPiece?.piece.color
+            ),
+            data
+          );
+          setSelectedSquare(null);
+          toggleTurn();
+          setData(data);
+          moveSound();
+        }
       }
     }
   };
 
   const resetGame = () => {
-    console.log(squareInitialData);
-    let newData = [...squareInitialData];
-    console.log("resetting");
-    setData(newData);
-    setOpenMoves([]);
+    setData(JSON.parse(JSON.stringify(squareInitialData)));
+    setSelectedSquareMoves([]);
     setSelectedSquare(null);
     setTurn("white");
+    startSound();
   };
 
-  const findPossiblePieceMove = (selectedSquare: ChessSquare) => {
+  const findLegalMoves = (
+    selectedSquare: ChessSquare,
+    data: ChessSquare[]
+  ): string[] => {
+    let squares: string[] = [];
     if (selectedSquare !== null) {
-      let coordinates: number[][] = [];
-      if (selectedSquare.chessPiece?.piece.name === "pawn") {
-        coordinates = getPawnPossibleMovement(selectedSquare, data);
-      } else if (selectedSquare.chessPiece?.piece.name === "knight") {
-        coordinates = getKnightPossibleMovement(selectedSquare, data);
-      } else if (selectedSquare.chessPiece?.piece.name === "bishop") {
-        coordinates = getBishopPossibleMovement(selectedSquare, data);
-      } else if (selectedSquare.chessPiece?.piece.name === "king") {
-        coordinates = getKingPossibleMovement(selectedSquare, data);
-      } else if (selectedSquare.chessPiece?.piece.name === "queen") {
-        coordinates = getQueenPossibleMovement(selectedSquare, data);
-      } else if (selectedSquare.chessPiece?.piece.name === "rook") {
-        coordinates = getRookPossibleMovement(selectedSquare, data);
+      squares = getLegalMoves(selectedSquare, data);
+
+      if (squares.length) {
+        setSelectedSquareMoves(squares);
       }
-      if (coordinates.length) {
-        setOpenMoves(coordinates);
-      }
-      updateSquaresWithCoordinates(coordinates, selectedSquare);
+      updateSquaresWithCoordinates(squares, selectedSquare);
     }
+    return squares;
   };
 
   function updateSquaresWithCoordinates(
-    coordinates: number[][],
+    squareids: string[],
     square: ChessSquare
   ) {
-    let newData = resetPossibleMovementOrCapture(data);
-
-    coordinates.forEach((coordinates: number[]) => {
-      const [tCord_row, tCord_col] = coordinates;
-
-      if (!newData[tCord_row][tCord_col].chessPiece) {
-        newData[tCord_row][tCord_col].canMoveInto = true;
-      }
-
-      if (
-        newData[tCord_row][tCord_col].chessPiece?.piece.color !==
-        square?.chessPiece?.piece.color
-      ) {
-        newData[tCord_row][tCord_col].canCapture = true;
+    let newMovables: string[] = [];
+    let newCaptures: string[] = [];
+    squareids.forEach((squareid: string) => {
+      const targetSquare = data.find((squ) => squ.id === squareid);
+      const originSquare = data.find((squ) => squ.id === square.id);
+      if (targetSquare && originSquare) {
+        if (
+          !targetSquare.chessPiece ||
+          (targetSquare.chessPiece &&
+            targetSquare.chessPiece.piece.color !==
+              originSquare.chessPiece?.piece.color)
+        ) {
+          newMovables.push(squareid);
+        } else {
+          newCaptures.push(squareid);
+        }
       }
     });
-
-    setData(newData);
+    setCaptures(newCaptures);
+    setMovables(newMovables);
+    setData(data);
   }
 
   return (
     <ChessContext.Provider
       value={{
-        openMoves,
+        selectedSquareMoves,
         turn,
+        movables,
+        captures,
         data,
         selectedSquare,
         playerMode,
@@ -153,7 +156,7 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
         toggleTurn,
         initiateMoveInto,
         togglePlayerMode,
-        findPossiblePieceMove,
+        findLegalMoves,
       }}
     >
       {children}
