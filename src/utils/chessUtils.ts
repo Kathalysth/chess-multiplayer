@@ -192,7 +192,7 @@ function getKnightHorizontalOffset(direction: Direction, step: number, offset: n
 function getValidIndex(verticalOffset: number, horizontalOffset: number): number[] {
   const number: number = verticalOffset + horizontalOffset
   const [start, end] = getBoundaries(verticalOffset)
-  if (number >= start && number <= end) {
+  if (number >= start && number <= end && number > -1) {
     return [number]
   }
   return []
@@ -334,9 +334,10 @@ function findNextSquareIndex(
   const verticalOffset = previousIndex + getVerticalOffset(options.direction, step, options.offset)
   const horizontalOffset = getHorizontalOffset(options.direction, step, options.offset)
   const [nextIndex] = getValidIndex(verticalOffset, horizontalOffset)
+
   if (
     !nextIndex ||
-    (nextIndex !== undefined && data[nextIndex].chessPiece) ||
+    (nextIndex && data[nextIndex].chessPiece) ||
     options.currentStep >= options.step
   ) {
     if (
