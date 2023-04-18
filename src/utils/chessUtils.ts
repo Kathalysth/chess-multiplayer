@@ -341,7 +341,8 @@ function findNextSquareIndex(
   ) {
     if (
       options.piece === 'pawn' &&
-      ((!data[nextIndex].chessPiece &&
+      ((nextIndex &&
+        !data[nextIndex].chessPiece &&
         (options.direction === 'up-left' || options.direction === 'up-right')) ||
         (options.direction === 'up' && data[nextIndex].chessPiece))
     ) {
