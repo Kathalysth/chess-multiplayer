@@ -252,7 +252,6 @@ export function getPieceMoves(selectedSquare: ChessSquare): number[] {
   }
   return newIndexes
 }
-
 function getBoundaries(number: number): number[] {
   if (number >= 0 && number <= 7) {
     return [0, 7]
@@ -395,4 +394,19 @@ function getStep(direction: Direction, piece: Piece | null, isInitialMove: boole
   if (piece === 'bishop') return 7
   if (piece === 'rook') return 7
   return 1
+}
+
+export function getCastlingEdge(number: number): number {
+  if (number === 62) return 63
+  if (number === 58) return 56
+  if (number === 2) return 0
+  if (number === 6) return 7
+  return -1
+}
+export function getCastlingRookIndex(number: number): number {
+  if (number === 62) return 61
+  if (number === 58) return 59
+  if (number === 2) return 3
+  if (number === 6) return 5
+  return -1
 }

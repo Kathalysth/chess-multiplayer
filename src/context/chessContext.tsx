@@ -3,7 +3,8 @@ import * as React from 'react'
 import useSound from 'use-sound'
 import { ChessContextType, ChessSquare, PlayerMode } from '../@types/chess'
 import { squareInitialData } from '../data'
-import { getLegalMoves, getPieceMoves } from '../utils'
+import { getCastlingEdge, getCastlingRookIndex, getLegalMoves, getPieceMoves } from '../utils'
+import { CASTLING_SQUARE_INDEXES } from '../utils/constans'
 
 export const ChessContext = React.createContext<ChessContextType | null>(null)
 
@@ -50,6 +51,21 @@ const ChessProvider: React.FC<Props> = ({ children }) => {
         },
       }
       newData[selectedSquare.index].chessPiece = null
+      if (CASTLING_SQUARE_INDEXES.includes(targetSquare.index)) {
+        let rookIndex = getCastlingEdge(targetSquare.index)
+        if ((rookIndex === 0 || rookIndex === 56) && newData[rookIndex + 1].chessPiece) {
+          rookIndex = -1
+        }
+        if (
+          rookIndex > -1 &&
+          newData[rookIndex].chessPiece &&
+          newData[rookIndex].chessPiece?.piece.name === 'rook'
+        ) {
+          const newRookIndex = getCastlingRookIndex(targetSquare.index)
+          newData[newRookIndex].chessPiece = newData[rookIndex].chessPiece
+          newData[rookIndex].chessPiece = null
+        }
+      }
     }
     setSelectedSquare(null)
     toggleTurn()
