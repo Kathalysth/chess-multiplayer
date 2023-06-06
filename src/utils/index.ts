@@ -1,2 +1,5 @@
-export * from './chessUtils'
-export * from './arrayUtils'
+export * from './chess.utils'
+export * from './array.utils'
+export * from './constants'
+export * from './calculations.utils'
+export * from './checks.utils'

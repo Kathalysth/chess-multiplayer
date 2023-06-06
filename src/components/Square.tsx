@@ -1,18 +1,18 @@
 import { useContext } from 'react'
 import { ChessSquare, ChessContextType } from '../@types/chess'
 import RenderPiece from './RenderPiece'
-import { ChessContext } from '../context/chessContext'
+import { ChessContext } from '../context/chess.context'
 
 function Square({ square }: { square: ChessSquare }) {
-  const { selectedSquare, movesHint, handleSelected } = useContext(ChessContext) as ChessContextType
-
-  function handleClick() {
-    handleSelected(square)
-  }
+  const { data, selectedSquare, movesHint, handleClick } = useContext(
+    ChessContext,
+  ) as ChessContextType
 
   return (
     <button
-      onClick={handleClick}
+      onClick={() => {
+        handleClick(square)
+      }}
       role='button'
       aria-label={`square-${square.id}`}
       className={`aspect-square ${
@@ -33,6 +33,12 @@ function Square({ square }: { square: ChessSquare }) {
           }`}
         />
       ) : null}
+      <div
+        id='moveHintOverlay'
+        className={`absolute top-0 left-0 right-0 bottom-0 text-teal-900 font-bold`}
+      >
+        {square.index}
+      </div>
       {selectedSquare ? (
         <div
           id='selectedOverlay'

@@ -10,16 +10,19 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'br0',
       piece: {
         name: 'rook',
         color: 'black',
         direction: 'down',
       },
+      move: {
+        up: [],
+        down: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -32,16 +35,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'bn0',
       piece: {
         name: 'knight',
         color: 'black',
         direction: 'down',
       },
-      moves: ['a6', 'c6'],
+      move: {
+        'up-right': [16],
+        'up-left': [18],
+        'down-left': [],
+        'down-right': [],
+        'left-up': [],
+        'left-down': [],
+        'right-up': [],
+        'right-down': [],
+      },
+      moves: [16, 18],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -54,16 +66,21 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'bb0',
       piece: {
         name: 'bishop',
         color: 'black',
         direction: 'down',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -76,16 +93,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'bq0',
       piece: {
         name: 'queen',
         color: 'black',
         direction: 'down',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+        up: [],
+        down: [],
+        left: [],
+        right: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -98,16 +124,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'bk0',
       piece: {
         name: 'king',
         color: 'black',
         direction: 'down',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+        up: [],
+        down: [],
+        left: [],
+        right: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -120,16 +155,21 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'bb1',
       piece: {
         name: 'bishop',
         color: 'black',
         direction: 'down',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -142,16 +182,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'bn1',
       piece: {
         name: 'knight',
         color: 'black',
         direction: 'down',
       },
-      moves: ['h6', 'f6'],
+      move: {
+        'up-right': [21],
+        'up-left': [23],
+        'down-left': [],
+        'down-right': [],
+        'left-up': [],
+        'left-down': [],
+        'right-up': [],
+        'right-down': [],
+      },
+      moves: [21, 23],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -164,16 +213,19 @@ export const squareInitialData: ChessSquare[] = [
       right: 7,
     },
     chessPiece: {
+      id: 'br1',
       piece: {
         name: 'rook',
         color: 'black',
         direction: 'down',
       },
+      move: {
+        up: [],
+        down: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -186,16 +238,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 15,
     },
     chessPiece: {
+      id: 'bp0',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['a6', 'a5'],
+      move: {
+        up: [16, 24],
+      },
+      moves: [16, 24],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -208,16 +262,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 15,
     },
     chessPiece: {
+      id: 'bp1',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['b6', 'b5'],
+      move: {
+        up: [17, 25],
+      },
+      moves: [17, 25],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -230,16 +286,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 15,
     },
     chessPiece: {
+      id: 'bp2',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['c6', 'c5'],
+      move: {
+        up: [18, 26],
+      },
+      moves: [18, 26],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -252,16 +310,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 15,
     },
     chessPiece: {
+      id: 'bp3',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['d6', 'd5'],
+      move: {
+        up: [19, 27],
+      },
+      moves: [19, 27],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -274,16 +334,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 15,
     },
     chessPiece: {
+      id: 'bp4',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['e6', 'e5'],
+      move: {
+        up: [20, 28],
+      },
+      moves: [20, 28],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -296,16 +358,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 15,
     },
     chessPiece: {
+      id: 'bp5',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['f6', 'f5'],
+      move: {
+        up: [21, 29],
+      },
+      moves: [21, 29],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -318,16 +382,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 15,
     },
     chessPiece: {
+      id: 'bp6',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['g6', 'g5'],
+      move: {
+        up: [22, 30],
+      },
+      moves: [22, 30],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -340,16 +406,18 @@ export const squareInitialData: ChessSquare[] = [
     },
     bg: 'white',
     chessPiece: {
+      id: 'bp7',
       piece: {
         name: 'pawn',
         color: 'black',
         direction: 'down',
       },
-      moves: ['h6', 'h5'],
+      move: {
+        up: [23, 31],
+      },
+      moves: [23, 31],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -687,16 +755,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp0',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['a3', 'a4'],
+      move: {
+        up: [32, 40],
+      },
+      moves: [32, 40],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -709,16 +779,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp1',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['b3', 'b4'],
+      move: {
+        up: [33, 41],
+      },
+      moves: [33, 41],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -731,16 +803,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp2',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['c3', 'c4'],
+      move: {
+        up: [34, 42],
+      },
+      moves: [34, 42],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -753,16 +827,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp3',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['d3', 'd4'],
+      move: {
+        up: [35, 43],
+      },
+      moves: [35, 43],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -775,16 +851,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp4',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['e3', 'e4'],
+      move: {
+        up: [36, 44],
+      },
+      moves: [36, 44],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -797,16 +875,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp5',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['f3', 'f4'],
+      move: {
+        up: [37, 45],
+      },
+      moves: [37, 45],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -819,16 +899,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp6',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['g3', 'g4'],
+      move: {
+        up: [38, 46],
+      },
+      moves: [38, 46],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -841,16 +923,18 @@ export const squareInitialData: ChessSquare[] = [
       right: 55,
     },
     chessPiece: {
+      id: 'wp7',
       piece: {
         name: 'pawn',
         color: 'white',
         direction: 'up',
       },
-      moves: ['h3', 'h4'],
+      move: {
+        up: [47, 39],
+      },
+      moves: [47, 39],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -864,16 +948,19 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wr0',
       piece: {
         name: 'rook',
         color: 'white',
         direction: 'up',
       },
+      move: {
+        up: [],
+        down: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -886,16 +973,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wn0',
       piece: {
         name: 'knight',
         color: 'white',
         direction: 'up',
       },
-      moves: ['a3', 'c3'],
+      move: {
+        'up-right': [42],
+        'up-left': [40],
+        'down-left': [],
+        'down-right': [],
+        'left-up': [],
+        'left-down': [],
+        'right-up': [],
+        'right-down': [],
+      },
+      moves: [40, 42],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -908,16 +1004,21 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wb0',
       piece: {
         name: 'bishop',
         color: 'white',
         direction: 'up',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -930,16 +1031,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wq0',
       piece: {
         name: 'queen',
         color: 'white',
         direction: 'up',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+        up: [],
+        down: [],
+        left: [],
+        right: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -952,16 +1062,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wk0',
       piece: {
         name: 'king',
         color: 'white',
         direction: 'up',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+        up: [],
+        down: [],
+        left: [],
+        right: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -974,16 +1093,21 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wb1',
       piece: {
         name: 'bishop',
         color: 'white',
         direction: 'up',
       },
+      move: {
+        'up-right': [],
+        'up-left': [],
+        'down-left': [],
+        'down-right': [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -996,16 +1120,25 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wn1',
       piece: {
         name: 'knight',
         color: 'white',
         direction: 'up',
       },
-      moves: ['h3', 'f3'],
+      move: {
+        'up-right': [47],
+        'up-left': [45],
+        'down-left': [],
+        'down-right': [],
+        'left-up': [],
+        'left-down': [],
+        'right-up': [],
+        'right-down': [],
+      },
+      moves: [45, 47],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },
@@ -1018,16 +1151,19 @@ export const squareInitialData: ChessSquare[] = [
       right: 63,
     },
     chessPiece: {
+      id: 'wr1',
       piece: {
         name: 'rook',
         color: 'white',
         direction: 'up',
       },
+      move: {
+        up: [],
+        down: [],
+      },
       moves: [],
       state: {
         isInitialMove: true,
-        threats: [],
-        canCapture: [],
       },
     },
   },

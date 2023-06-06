@@ -1,20 +1,48 @@
 // @types.chess.ts
 export type Piece = 'pawn' | 'king' | 'queen' | 'rook' | 'bishop' | 'knight'
 
+type Move = {
+  up?: number[]
+  down?: number[]
+  left?: number[]
+  right?: number[]
+  'up-left'?: number[]
+  'up-right'?: number[]
+  'down-left'?: number[]
+  'down-right'?: number[]
+  'left-up'?: number[]
+  'left-down'?: number[]
+  'right-up'?: number[]
+  'right-down'?: number[]
+}
+
+export type MoveOptions = {
+  offset: number
+  max: number
+  direction: Direction
+  IsKnight?: boolean
+}
+
+export type DirectionConfig = {
+  offset: number
+  max: number
+  directions: Direction[]
+}
+
 export type ChessPiece = {
+  id: string
   piece: {
     name: Piece
     color: 'white' | 'black'
     direction: 'up' | 'down'
   }
-  moves: string[]
+  move: Move
+  moves: number[]
   state: PieceState
 }
 
 export type PieceState = {
   isInitialMove: boolean
-  canCapture: string[]
-  threats: string[]
   isProtectingKing?: boolean
   isKingUnderThreat?: boolean
 }
@@ -55,5 +83,15 @@ export type ChessContextType = {
   resetGame: () => void
   togglePlayerMode: (value: string) => void
   toggleTurn: () => void
-  handleSelected: (selectedSquare: ChessSquare) => void
+  handleClick: (selectedSquare: ChessSquare) => void
+}
+
+export type ThreatDirection = {
+  name: string
+  indexes: number[]
+}
+
+export type Player = {
+  serial: 1 | 2
+  color: PlayerMode
 }
